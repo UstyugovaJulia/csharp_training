@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace addresbook_web_tests2
 {
-    class Circle
+    class Circle: Figure
     {
         private int radius;
-        private bool colored=false;
         public Circle(int radius)
         {
             this.radius = radius;
@@ -27,19 +26,7 @@ namespace addresbook_web_tests2
             }
         }
 
-        public bool Colored
-        {
-            get
-            {
-                return colored;
-            }
-            set
-
-            {
-                colored = value;
-            }
-        }
-
+       
 
     }
 }
