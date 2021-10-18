@@ -26,7 +26,7 @@ namespace WebAddressbookTests
         }
 
         [TearDown]
-        public void GroupCreationTest()
+        public void TeardownTest()
         {
             try
             {
@@ -40,7 +40,7 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void GroupCreationTest()
         {
             driver.Navigate().GoToUrl(baseURL);
             driver.FindElement(By.Name("user")).Click();
