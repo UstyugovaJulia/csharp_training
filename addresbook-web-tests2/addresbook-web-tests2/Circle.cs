@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace addresbook_web_tests2
 {
-    class Square
+    class Circle
     {
-        private int size;
-        private bool colored = false;
-        public Square(int size)
+        private int radius;
+        private bool colored=false;
+        public Circle(int radius)
         {
-            this.size = size;
+            this.radius = radius;
         }
-        public int Size
 
-        {
-            get
+        public int Radius {
+            get 
             {
-                return size;
+                return radius;
             }
             set
+
             {
-                size = value;
+                radius = value;
             }
         }
 
@@ -42,5 +42,4 @@ namespace addresbook_web_tests2
 
 
     }
-
 }
