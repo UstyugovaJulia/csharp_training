@@ -68,8 +68,7 @@ namespace WebAddressbookTests
         }
 
         private void FillGroupForm(GroupData group)
-            //(string name)
-            //, string header, string footer)
+            
         {
 
             driver.FindElement(By.Name("group_name")).Click();
