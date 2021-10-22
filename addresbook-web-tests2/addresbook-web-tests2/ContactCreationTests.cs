@@ -45,7 +45,7 @@ namespace WebAddressbookTests
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
             GoToCreationContactPage();
-            ContactDataFIO contact = new ContactDataFIO("Иванов");
+            ContactData contact = new ContactData("Иванов");
             contact.Lastname = "Петр";
             contact.Middlename = "Иванович";
             contact.Nickname = "Ivanov";
@@ -56,16 +56,16 @@ namespace WebAddressbookTests
             contact.Annivermonth = "May";
             contact.Anniveryear = "1980";
             FillContactFormFIONickName(contact);
-            ContactDataCompany contactcompany = new ContactDataCompany("OOO KIT");
-            contactcompany.Title = "TitleTest";
-            contactcompany.Address = "г. Омск";
-            contactcompany.Home = "13";
-            contactcompany.MobileNumber = "79131231211";
-            contactcompany.WorkNumber = "79131231212";
-            contactcompany.Email = "12@ya.ru";
-            contactcompany.Email2 = "13@ya.ru";
-            contactcompany.Homepage = "34";
-            FillContactFormCompanyData(contactcompany);
+           // ContactDataCompany contactcompany = new ContactDataFIO("OOO KIT");
+            contact.Title = "TitleTest";
+            contact.Address = "г. Омск";
+            contact.Home = "13";
+            contact.MobileNumber = "79131231211";
+            contact.WorkNumber = "79131231212";
+            contact.Email = "12@ya.ru";
+            contact.Email2 = "13@ya.ru";
+            contact.Homepage = "34";
+            FillContactFormCompanyData(contact);
             FillContactFormSecondary();
             SubmitContactCreation();
             ReturnToAddressBook();
@@ -91,43 +91,43 @@ namespace WebAddressbookTests
        
       
 
-        private void FillContactFormCompanyData(ContactDataCompany contactcompany)
+        private void FillContactFormCompanyData(ContactData contact)
         {
             driver.FindElement(By.Name("title")).Click();
             driver.FindElement(By.Name("title")).Clear();
-            driver.FindElement(By.Name("title")).SendKeys(contactcompany.Title);
+            driver.FindElement(By.Name("title")).SendKeys(contact.Title);
             driver.FindElement(By.Name("company")).Click();
             driver.FindElement(By.Name("company")).Clear();
-            driver.FindElement(By.Name("company")).SendKeys(contactcompany.Company);
+            driver.FindElement(By.Name("company")).SendKeys(contact.Company);
             driver.FindElement(By.Name("address")).Click();
             driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(contactcompany.Address);
+            driver.FindElement(By.Name("address")).SendKeys(contact.Address);
             driver.FindElement(By.Name("home")).Click();
             driver.FindElement(By.Name("address")).Click();
             driver.FindElement(By.Name("home")).Click();
             driver.FindElement(By.Name("home")).Clear();
-            driver.FindElement(By.Name("home")).SendKeys(contactcompany.Home);
+            driver.FindElement(By.Name("home")).SendKeys(contact.Home);
             driver.FindElement(By.Name("mobile")).Click();
             driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys(contactcompany.MobileNumber);
+            driver.FindElement(By.Name("mobile")).SendKeys(contact.MobileNumber);
             driver.FindElement(By.Name("work")).Click();
             driver.FindElement(By.Name("work")).Clear();
-            driver.FindElement(By.Name("work")).SendKeys(contactcompany.WorkNumber);
+            driver.FindElement(By.Name("work")).SendKeys(contact.WorkNumber);
             driver.FindElement(By.Name("fax")).Click();
             driver.FindElement(By.Name("email")).Click();
             driver.FindElement(By.Name("email")).Click();
             driver.FindElement(By.Name("email")).Clear();
-            driver.FindElement(By.Name("email")).SendKeys(contactcompany.Email);
+            driver.FindElement(By.Name("email")).SendKeys(contact.Email);
             driver.FindElement(By.Name("email2")).Click();
             driver.FindElement(By.Name("email2")).Clear();
-            driver.FindElement(By.Name("email2")).SendKeys(contactcompany.Email2);
+            driver.FindElement(By.Name("email2")).SendKeys(contact.Email2);
             driver.FindElement(By.Name("email3")).Click();
             driver.FindElement(By.Name("homepage")).Click();
             driver.FindElement(By.Name("homepage")).Clear();
-            driver.FindElement(By.Name("homepage")).SendKeys(contactcompany.Homepage);
+            driver.FindElement(By.Name("homepage")).SendKeys(contact.Homepage);
         }
 
-        private void FillContactFormFIONickName(ContactDataFIO contact)
+        private void FillContactFormFIONickName(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
