@@ -16,9 +16,9 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToCreationContactPage();
+           /* app.Navigator.GoToHomePage();
+            app.Auth.Login(new AccountData("admin", "secret"));*/
+            app.Navigator.GoToCreationContactPage();
             ContactData contact = new ContactData("Иванов");
             contact.Lastname = "Петр";
             contact.Middlename = "Иванович";
@@ -29,7 +29,6 @@ namespace WebAddressbookTests
             contact.Anniverday = "14";
             contact.Annivermonth = "May";
             contact.Anniveryear = "1980";
-            FillContactFormFIONickName(contact);
             contact.Title = "TitleTest";
             contact.Address = "г. Омск";
             contact.Home = "13";
@@ -38,10 +37,12 @@ namespace WebAddressbookTests
             contact.Email = "12@ya.ru";
             contact.Email2 = "13@ya.ru";
             contact.Homepage = "34";
-            FillContactFormCompanyData(contact);
-            FillContactFormSecondary();
-            SubmitContactCreation();
-            ReturnToAddressBook();
+            app.Contacts
+                .FillContactFormFIONickName(contact)
+                .FillContactFormCompanyData(contact)
+                .FillContactFormSecondary()
+                .SubmitContactCreation()
+                .ReturnToAddressBook();
            
         }
 
