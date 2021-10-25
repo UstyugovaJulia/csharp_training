@@ -40,6 +40,17 @@ namespace WebAddressbookTests
 
         }
 
+        public GroupHelper Edit(GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroup();
+            EditGroup(group);
+
+            ReturnToGroupsPage();
+            return this;
+        }
+
+
         public GroupHelper InitGroupCreation()
         {
 
@@ -90,5 +101,31 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("delete")).Click();
             return this;
         }
+
+        public GroupHelper EditGroup(GroupData group)
+        {
+            driver.FindElement(By.Name("edit")).Click();
+            driver.FindElement(By.Name("group_name")).Click();
+            driver.FindElement(By.Name("group_name")).Clear();
+            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
+            driver.FindElement(By.Name("group_header")).Click();
+            driver.FindElement(By.Name("group_header")).Clear();
+            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
+            driver.FindElement(By.Name("group_footer")).Click();
+            driver.FindElement(By.Name("group_footer")).Click();
+            // ERROR: Caught exception [ERROR: Unsupported command [doubleClick | name=group_footer | ]]
+            driver.FindElement(By.Name("group_footer")).Click();
+            driver.FindElement(By.Name("group_footer")).Clear();
+            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public GroupHelper SelectGroup()
+        {
+            driver.FindElement(By.Name("selected[]")).Click();
+            return this;
+        }
+
     }
 }

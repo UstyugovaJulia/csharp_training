@@ -16,8 +16,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-           /* app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));*/
+           
             app.Navigator.GoToCreationContactPage();
             ContactData contact = new ContactData("Иванов");
             contact.Lastname = "Петр";
