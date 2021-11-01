@@ -22,24 +22,24 @@ namespace WebAddressbookTests
            
             app.Contacts.Edit(1);
            
-            ContactData contact = new ContactData("Петров");
-            contact.Lastname = "Олег";
-            contact.Middlename = "Олегович";
-            contact.Nickname = "Ivanov";
+            ContactData contact = new ContactData("Семенов");
+            contact.Lastname = null;
+            contact.Middlename = null;
+            contact.Nickname = null;
             contact.Birthday = "14";
             contact.Birthmonth = "May";
             contact.Birthyear = "1980";
             contact.Anniverday = "14";
             contact.Annivermonth = "May";
             contact.Anniveryear = "1980";
-            contact.Title = "Title";
-            contact.Address = "г. Тюмень";
-            contact.Home = "13";
-            contact.MobileNumber = "79131231213";
-            contact.WorkNumber = "79131231214";
-            contact.Email = "16@ya.ru";
-            contact.Email2 = "17@ya.ru";
-            contact.Homepage = "4";
+            contact.Title = null;
+            contact.Address = null;
+            contact.Home = null;
+            contact.MobileNumber = null;
+            contact.WorkNumber = null;
+            contact.Email = null;
+            contact.Email2 = null;
+            contact.Homepage = null;
             app.Contacts
                 .GoToEditPage(contact)
                 .ReturnToContactPage();
