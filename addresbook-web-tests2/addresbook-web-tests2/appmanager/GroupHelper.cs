@@ -12,7 +12,7 @@ namespace WebAddressbookTests
 {
    public class GroupHelper:HelperBase
     {
-      
+       
 
         public GroupHelper(ApplicationManager manager):base (manager)
         {
@@ -27,7 +27,8 @@ namespace WebAddressbookTests
             InitGroupCreation();
             FillGroupForm(group);
             SubmitGroupCreation();
-            ReturnToGroupsPage();
+            //    ReturnToGroupsPage();
+            manager.Navigator.GoToGroupsPage();
             return this;
         }
 
@@ -91,9 +92,30 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
+            
+            var EditIcon = driver.FindElements(By.XPath("//input[@name='selected[]'][" + index + "]"));
+            if (EditIcon == null || EditIcon.Count == 0)
+            {
+
+                
+                GroupData group = new GroupData("aaa");
+                group.Header = "ddd";
+                group.Footer = "fff";
+
+
+                manager.Groups.Create(group);
+
+            }
+           
+
             driver.FindElement(By.XPath("//input[@name='selected[]'][" + index + "]")).Click();
             return this;
         }
+
+       /* public GroupHelper Create(int v)
+        {
+            return this;
+        }*/
 
         public GroupHelper RemoveGroup()
         {
