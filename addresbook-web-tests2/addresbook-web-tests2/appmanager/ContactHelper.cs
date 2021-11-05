@@ -23,7 +23,7 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             GoToContactPage();
-            ContactRemoval();
+            ContactRemoval(v);
             ReturnToContactPage();
             return this;
 
@@ -34,8 +34,39 @@ namespace WebAddressbookTests
             manager.Navigator.GoToHomePage();
             
             GoToContactPage();
-            SelectedContact();
+            SelectedContact(v);
             ReturnToContactPage();
+            return this;
+
+        }
+
+        public ContactHelper Create(int v)
+        {
+            manager.Navigator.GoToCreationContactPage();
+            ContactData contact = new ContactData("Иванов");
+            contact.Lastname = "Петр";
+            contact.Middlename = "Иванович";
+            contact.Nickname = "Ivanov";
+            contact.Birthday = "14";
+            contact.Birthmonth = "May";
+            contact.Birthyear = "1980";
+            contact.Anniverday = "14";
+            contact.Annivermonth = "May";
+            contact.Anniveryear = "1980";
+            contact.Title = "TitleTest";
+            contact.Address = "г. Омск";
+            contact.Home = "13";
+            contact.MobileNumber = "79131231211";
+            contact.WorkNumber = "79131231212";
+            contact.Email = "12@ya.ru";
+            contact.Email2 = "13@ya.ru";
+            contact.Homepage = "34";
+            manager.Contacts
+                .FillContactFormFIONickName(contact)
+                .FillContactFormCompanyData(contact)
+                .FillContactFormSecondary()
+                .SubmitContactCreation()
+                .GoToContactPage();
             return this;
 
         }
@@ -71,6 +102,7 @@ namespace WebAddressbookTests
             return this;
         }
 
+        
        
 
         public ContactHelper FillContactFormCompanyData(ContactData contact)
@@ -110,8 +142,15 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper ContactRemoval()
+        public ContactHelper ContactRemoval(int v)
         {
+            var EditIcon=driver.FindElements(By.XPath("//img[@alt='Edit']"));
+            if (EditIcon == null || EditIcon.Count == 0)
+            {
+               
+                Create(v);
+
+            }
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
             return this;
@@ -130,9 +169,17 @@ namespace WebAddressbookTests
         }
 
 
-        public ContactHelper SelectedContact()
+        public ContactHelper SelectedContact(int v)
         {
-            driver.FindElement(By.Id("2")).Click();
+
+              var EditIcon = driver.FindElements(By.XPath("//img[@alt='Edit']"));
+              if (EditIcon == null || EditIcon.Count == 0)
+              {
+                  Create(v);
+                 
+              }
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+           
             return this;
         }
 
