@@ -29,6 +29,8 @@ namespace WebAddressbookTests
 
         }
 
+        
+
         public ContactHelper Edit(int v)
         {
             manager.Navigator.GoToHomePage();
@@ -220,6 +222,16 @@ namespace WebAddressbookTests
             return this;
         }
 
-       
+        public List<ContactData> GetContactsList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.entry"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
+        }
     }
 }
