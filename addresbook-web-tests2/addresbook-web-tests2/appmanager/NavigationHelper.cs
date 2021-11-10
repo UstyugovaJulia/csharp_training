@@ -42,7 +42,8 @@ namespace WebAddressbookTests
 
         public void GoToCreationContactPage()
         {
-            if (driver.Url == baseURL + "addressbook/edit.php")
+             if (driver.Url == baseURL + "addressbook/edit.php")
+
             {
                 return;
             }

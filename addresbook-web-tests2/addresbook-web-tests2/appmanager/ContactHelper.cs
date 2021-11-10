@@ -23,6 +23,7 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             GoToContactPage();
+            //ContactNot(v);
             ContactRemoval(v);
             ReturnToContactPage();
             return this;
@@ -144,20 +145,45 @@ namespace WebAddressbookTests
             return this;
         }
 
+
+      /*  public ContactHelper ContactNot(int v)
+        {
+
+            var EditIcon = driver.FindElements(By.XPath("//img[@alt='Edit']"));
+            if (EditIcon != null)
+            {
+                Create(v);
+            }
+
+            return this;
+        }*/
         public ContactHelper ContactRemoval(int v)
         {
-            var EditIcon=driver.FindElements(By.XPath("//img[@alt='Edit']"));
-            if (EditIcon == null || EditIcon.Count == 0)
-            {
-               
-                Create(v);
+            /* var EditIcon=driver.FindElements(By.XPath("//img[@alt='Edit']"));
+             if (EditIcon == null || EditIcon.Count == 0)
+             {
 
-            }
+                 Create(v);
+
+             }
+             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+             driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
+             return this;*/
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
             return this;
         }
 
+        public bool NotContact()
+        {
+            return !IsElementPresent(By.XPath("//img[@alt='Edit']"));
+        }
+
+        public bool NotContact(ContactData contact)
+        {
+            return NotContact()
+                    && IsElementPresent(By.XPath($"//td[text()='{contact.Firstname}')]"));
+        }
         public ContactHelper GoToContactPage()
         {
             driver.FindElement(By.LinkText("home")).Click();
@@ -226,10 +252,12 @@ namespace WebAddressbookTests
         {
             List<ContactData> contacts = new List<ContactData>();
             manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.entry"));
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.Text));
+                var column = element.FindElements(By.CssSelector("td"));
+                contacts.Add(new ContactData(element.Text) { Lastname = column[1].Text, Firstname=column[2].Text});
+
             }
             return contacts;
         }
