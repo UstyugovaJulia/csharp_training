@@ -200,12 +200,12 @@ namespace WebAddressbookTests
         public ContactHelper SelectedContact(int v)
         {
 
-              var EditIcon = driver.FindElements(By.XPath("//img[@alt='Edit']"));
+              /*var EditIcon = driver.FindElements(By.XPath("//img[@alt='Edit']"));
               if (EditIcon == null || EditIcon.Count == 0)
               {
                   Create(v);
                  
-              }
+              }*/
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
            
             return this;

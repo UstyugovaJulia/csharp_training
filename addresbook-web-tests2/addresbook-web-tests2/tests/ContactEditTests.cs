@@ -19,7 +19,12 @@ namespace WebAddressbookTests
         [Test]
         public void ContactEditTest()
         {
-           
+            if (app.Contacts.NotContact())
+            {
+                app.Contacts.Create(1);
+            }
+
+
             app.Contacts.Edit(1);
            
             ContactData contact = new ContactData("Семенов");
