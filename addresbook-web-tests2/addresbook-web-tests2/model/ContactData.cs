@@ -8,9 +8,9 @@ namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string firstname;
+       // private string firstname;
         private string middlename="";
-        private string lastname ="";
+      //  private string lastname ="";
         private string nickname="";
         private string birthday = "";
         private string birthmonth = "";
@@ -29,6 +29,11 @@ namespace WebAddressbookTests
         private string homepage = "";
 
 
+        public ContactData(string firstname, string lastname)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+        }
         public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
@@ -40,19 +45,18 @@ namespace WebAddressbookTests
             {
                 return true;
             }
-            return Lastname == other.Lastname;
-                //&& Middlename == other.Middlename;
-            //return Middlename == other.Middlename;
+           
+            return Firstname == other.Firstname && Lastname == other.Lastname;
         }
 
         public override int GetHashCode()
         {
-            return Lastname.GetHashCode() ;
+            return Firstname.GetHashCode()*Lastname.GetHashCode();
         }
 
         public override string ToString()
         {
-            return "lastname="+Lastname;
+            return "firstname=" + Firstname + "lastname="+Lastname;
         }
 
         public int CompareTo(ContactData other)
@@ -61,33 +65,28 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            return Lastname.CompareTo(other.Lastname);
+         
+
+            if (Firstname == other.Firstname)
+            {
+                return Lastname.CompareTo(other.Lastname);
+            }
+          
+            return Firstname.CompareTo(other.Firstname);
         }
 
         public ContactData(string firstname)
-           
+
         {
-            this.firstname = firstname;
-         
-           
+            Firstname = firstname;
 
         }
 
-        public string Firstname 
-        {
-            get {
+        public string Firstname { get; set;  }
+        public string Lastname { get; set; }
 
-                return firstname;
 
-            }
 
-            set {
-                firstname = value;
-            }
-        }
-
-        
-       
 
         public string Middlename
         {
@@ -104,7 +103,7 @@ namespace WebAddressbookTests
             }
         }
 
-        public string Lastname
+      /*  public string Lastname
         {
             get
             {
@@ -117,7 +116,7 @@ namespace WebAddressbookTests
             {
                 lastname = value;
             }
-        }
+        }*/
 
         public string Nickname
         {

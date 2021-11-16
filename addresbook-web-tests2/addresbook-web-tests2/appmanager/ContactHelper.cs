@@ -19,6 +19,7 @@ namespace WebAddressbookTests
           
         }
 
+      
         public ContactHelper Remove(int v)
         {
             manager.Navigator.GoToHomePage();
@@ -46,8 +47,8 @@ namespace WebAddressbookTests
         public ContactHelper Create(int v)
         {
             manager.Navigator.GoToCreationContactPage();
-            ContactData contact = new ContactData("Иванов");
-            contact.Lastname = "Петр";
+            ContactData contact = new ContactData("Иванов","Петр");
+           // contact.Lastname = "Петр";
             contact.Middlename = "Иванович";
             contact.Nickname = "Ivanov";
             contact.Birthday = "14";
@@ -256,10 +257,39 @@ namespace WebAddressbookTests
             foreach (IWebElement element in elements)
             {
                 var column = element.FindElements(By.CssSelector("td"));
-                contacts.Add(new ContactData(element.Text) { Lastname = column[1].Text, Firstname=column[2].Text});
+                 contacts.Add(new ContactData(element.Text) { Lastname = column[1].Text, Firstname=column[2].Text});
+                // contacts.Add(new ContactData(element.Text) { Firstname=column[2].Text});
 
             }
             return contacts;
+        }
+
+        public ContactData GetContactInformationFromTable(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(0);
+            string firstname = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastname = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string home = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobileNumber = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workNumber = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            return new ContactData(firstname, lastname);
+        }
+
+        public void InitContactModification(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
+            throw new NotImplementedException();
         }
     }
 }
