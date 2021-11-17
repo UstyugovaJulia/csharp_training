@@ -81,7 +81,7 @@ namespace WebAddressbookTests
         {
 
             driver.FindElement(By.Name("submit")).Click();
-            groupChache = null;
+            groupCache = null;
             return this;
         }
 
@@ -144,7 +144,7 @@ namespace WebAddressbookTests
         public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.Name("delete")).Click();
-            groupChache = null;
+            groupCache = null;
             return this;
         }
 
@@ -159,7 +159,7 @@ namespace WebAddressbookTests
         public GroupHelper SubmitGroupModification()
         {
             driver.FindElement(By.Name("update")).Click();
-            groupChache = null;
+            groupCache = null;
             return this;
         }
 
@@ -169,34 +169,34 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private List<GroupData> groupChache = null;
+        private List<GroupData> groupCache = null;
 
         public List<GroupData> GetGroupList()
         {
-            if (groupChache == null)
+            if (groupCache == null)
             {
-                groupChache = new List<GroupData>();
+                groupCache = new List<GroupData>();
                 manager.Navigator.GoToGroupsPage();
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
                    // groupChache.Add(new GroupData(element.Text)
-                   groupChache.Add(new GroupData(null)
+                   groupCache.Add(new GroupData(null)
                     {
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                     });
                     string allGroupNames = driver.FindElement(By.CssSelector("div#content form")).Text;
                     string[] parts = allGroupNames.Split('\n');
-                    int shift = groupChache.Count - parts.Length;
-                    for (int i = 0; i < groupChache.Count; i++)
+                    int shift = groupCache.Count - parts.Length;
+                    for (int i = 0; i < groupCache.Count; i++)
                     {
                         if (i < shift)
                         {
-                            groupChache[i].Name = "";
+                            groupCache[i].Name = "";
                         }
                         else 
                         {
-                            groupChache[i].Name = parts[i-shift].Trim();
+                            groupCache[i].Name = parts[i-shift].Trim();
 
                         }
 
@@ -205,7 +205,7 @@ namespace WebAddressbookTests
 
                 }
             }
-            return new List<GroupData>(groupChache);
+            return new List<GroupData>(groupCache);
 
         }
 

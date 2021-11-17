@@ -48,6 +48,8 @@ namespace WebAddressbookTests
                 .FillContactFormSecondary()
                 .SubmitContactCreation()
                 .ReturnToAddressBook();
+         //   Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
+
 
             List<ContactData> newContacts = app.Contacts.GetContactsList();
             oldContacts.Add(contact);

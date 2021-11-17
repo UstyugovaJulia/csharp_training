@@ -75,7 +75,7 @@ namespace WebAddressbookTests
 
         }
 
-
+      
         public ContactHelper FillContactFormFIONickName(ContactData contact)
         {
 
@@ -136,6 +136,7 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -172,6 +173,7 @@ namespace WebAddressbookTests
              return this;*/
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -246,12 +248,28 @@ namespace WebAddressbookTests
             Type(By.Name("email"), contact.Email);
             Type(By.Name("email2"), contact.Email2);
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
+            contactCache = null;
             return this;
         }
 
+        private List<ContactData> contactCache = null;
         public List<ContactData> GetContactsList()
         {
-            List<ContactData> contacts = new List<ContactData>();
+            if (contactCache == null) 
+            {
+                contactCache = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
+                foreach (IWebElement element in elements)
+                {
+                    var column = element.FindElements(By.CssSelector("td"));
+                    contactCache.Add(new ContactData(element.Text) { Lastname = column[1].Text, Firstname = column[2].Text });
+                    // contacts.Add(new ContactData(element.Text) { Firstname=column[2].Text});
+
+                }
+
+            }
+          /*  List<ContactData> contacts = new List<ContactData>();
             manager.Navigator.GoToHomePage();
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
             foreach (IWebElement element in elements)
@@ -260,9 +278,15 @@ namespace WebAddressbookTests
                  contacts.Add(new ContactData(element.Text) { Lastname = column[1].Text, Firstname=column[2].Text});
                 // contacts.Add(new ContactData(element.Text) { Firstname=column[2].Text});
 
-            }
-            return contacts;
+            }*/
+            return new List<ContactData> (contactCache);
         }
+
+        public int GetContactCount()
+        {
+          return  driver.FindElements(By.CssSelector("tr[name='entry']")).Count;
+                }
+
 
         public ContactData GetContactInformationFromTable(int index)
         {
