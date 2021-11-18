@@ -290,12 +290,28 @@ namespace WebAddressbookTests
 
         public ContactData GetContactInformationFromTable(int index)
         {
-            throw new NotImplementedException();
+            manager.Navigator.GoToHomePage();
+           IList<IWebElement> cells= driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"));
+            string lastname = cells[1].Text;
+            string firstname = cells[2].Text;
+            string address = cells[3].Text;
+          //  string allEmails = cells[4].Text;
+            string allPhones = cells[5].Text;
+            return new ContactData(firstname, lastname)
+            {
+                Address = address,
+        //        AllEmails=allEmails,
+                AllPhones = allPhones,
+                
+            };
+
         }
 
         public ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
+
             InitContactModification(0);
             string firstname = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string lastname = driver.FindElement(By.Name("lastname")).GetAttribute("value");
@@ -304,8 +320,19 @@ namespace WebAddressbookTests
             string home = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobileNumber = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workNumber = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
 
-            return new ContactData(firstname, lastname);
+            return new ContactData(firstname, lastname)
+            {
+                Address = address,
+                Home=home,
+                MobileNumber=mobileNumber,
+                WorkNumber=workNumber,
+                Email=email,
+                Email2=email2
+
+            };
         }
 
         public void InitContactModification(int index)
@@ -313,7 +340,7 @@ namespace WebAddressbookTests
             driver.FindElements(By.Name("entry"))[index]
                 .FindElements(By.TagName("td"))[7]
                 .FindElement(By.TagName("a")).Click();
-            throw new NotImplementedException();
+           
         }
     }
 }

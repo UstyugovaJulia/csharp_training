@@ -20,14 +20,14 @@ namespace WebAddressbookTests
         private string anniveryear = "";
         private string title = "";
         private string company= "";
-        private string address = "";
+        //private string address = "";
         private string home = "";
-        private string mobileNumber = "";
-        private string workNumber = "";
-        private string email = "";
-        private string email2 = "";
+      //  private string mobileNumber = "";
+       // private string workNumber = "";
+       // private string email = "";
+       // private string email2 = "";
         private string homepage = "";
-
+        private string allPhones;
 
         public ContactData(string firstname, string lastname)
         {
@@ -257,100 +257,52 @@ namespace WebAddressbookTests
             }
         }
 
-        public string Address
-        {
+        public string Address { get; set; }
+        
+        public string Home { get; set; }
+        
+        public string MobileNumber { get; set; }
+       
+
+
+
+        public string WorkNumber { get; set; }
+        
+
+
+        public string Email { get; set; }
+        
+        public string Email2 { get; set; }
+
+        public string AllPhones {
             get
             {
-
-                return address;
-
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(Home) + CleanUp(MobileNumber) + CleanUp(WorkNumber)).Trim();
+                }
             }
 
-            set
+            set 
             {
-                address = value;
-            }
+                allPhones = value;
+            } 
         }
 
-        public string Home
+        private string CleanUp(string home)
         {
-            get
+            if (home == null || home =="")
             {
-
-                return home;
-
+                return "";
             }
-
-            set
-            {
-                home = value;
-            }
+            return home.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
         }
 
-        public string MobileNumber
-        {
-            get
-            {
-
-                return mobileNumber;
-
-            }
-
-            set
-            {
-                mobileNumber = value;
-            }
-        }
-
-
-
-
-        public string WorkNumber
-        {
-            get
-            {
-
-                return workNumber;
-
-            }
-
-            set
-            {
-                workNumber = value;
-            }
-        }
-
-
-
-        public string Email
-        {
-            get
-            {
-
-                return email;
-
-            }
-
-            set
-            {
-                email = value;
-            }
-        }
-
-        public string Email2
-        {
-            get
-            {
-
-                return email2;
-
-            }
-
-            set
-            {
-                email2 = value;
-            }
-        }
+        public string AllEmails { get; set; }
 
 
         public string Homepage
