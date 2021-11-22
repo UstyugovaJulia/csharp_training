@@ -46,6 +46,7 @@ namespace WebAddressbookTests
 
         }
 
+       
         public ContactHelper Create(int v)
         {
             manager.Navigator.GoToCreationContactPage();
@@ -216,6 +217,15 @@ namespace WebAddressbookTests
             return this;
         }
 
+
+        public ContactHelper ViewContact(int v)
+        {
+
+            driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
+
+            return this;
+        }
+
         public ContactHelper GoToEditPage(ContactData contact)
         {
           
@@ -310,6 +320,29 @@ namespace WebAddressbookTests
             };
 
         }
+
+        public ContactData GetContactInformationViewFromTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            ViewContact(1);
+
+            IList<IWebElement> fios = driver.FindElements(By.Id("content"))[index]
+                .FindElements(By.TagName("b"));
+            //  IList<IWebElement> cells = driver.FindElements(By.Id("content"))[index]
+            //      .FindElements(By.TagName("b"));
+            IList<IWebElement> otherAll = driver.FindElements(By.Id("content"));
+          
+
+            string fio = fios[0].Text;
+            string other = otherAll[0].Text;
+            //не верно
+            // string fio = driver.FindElement(By.Id("content"));
+           // string fio = driver.FindElement(By.XPath("//div[@id='content']"));
+
+            return new ContactData(fio);
+
+        }
+
 
         public ContactData GetContactInformationFromEditForm(int index)
         {

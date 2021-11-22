@@ -11,11 +11,26 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactCreationTests: AuthTestBase
+    public class ContactCreationTests : AuthTestBase
     {
+        public static IEnumerable<ContactData> RandomContactDataProvider()
+            {
+            List<ContactData> contacts = new List<ContactData>();
+            for (int i = 0; i < 5; i++)
+
+            { 
+            contacts.Add(new ContactData(GeneratrRandomString(30))
+                    {
+                    Lastname= GeneratrRandomString(20),
+                    Firstname= GeneratrRandomString(20)
+            });
+            }
+            return contacts;
+
+}
        
-        [Test]
-        public void ContactCreationTest()
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void ContactCreationTest(ContactData contact)
         {
            
 
@@ -24,7 +39,7 @@ namespace WebAddressbookTests
             //app.Contacts.Create(1);
 
             app.Navigator.GoToCreationContactPage();
-            ContactData contact = new ContactData("Иванов");
+           /* ContactData contact = new ContactData("Иванов");
             contact.Lastname = "Петр";
             contact.Middlename = "Иванович";
             contact.Nickname = "Ivanov";
@@ -41,7 +56,7 @@ namespace WebAddressbookTests
             contact.WorkNumber = "79131231212";
             contact.Email = "12@ya.ru";
             contact.Email2 = "13@ya.ru";
-            contact.Homepage = "34";
+            contact.Homepage = "34";*/ 
             app.Contacts
                 .FillContactFormFIONickName(contact)
                 .FillContactFormCompanyData(contact)

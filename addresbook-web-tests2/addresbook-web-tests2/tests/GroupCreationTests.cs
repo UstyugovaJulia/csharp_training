@@ -10,16 +10,31 @@ namespace WebAddressbookTests
     [TestFixture]
     public class GroupCreationTests : AuthTestBase
     {
-       
-        [Test]
-        public void GroupCreationTest()
+        public static IEnumerable<GroupData> RandomGroupDataProvider()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            for (int i = 0; i < 5; i++)
+            { 
+            groups.Add(new GroupData(GeneratrRandomString(30))
+                { 
+                Header= GeneratrRandomString(100),
+                 Footer= GeneratrRandomString(100)
+
+            });
+            }
+            return groups;
+        }
+
+        
+        [Test, TestCaseSource("RandomGroupDataProvider")]
+        public void GroupCreationTest( GroupData group)
         {
             
-            GroupData group = new GroupData("aaa");
+        /*    GroupData group = new GroupData("aaa");
             group.Header = @"d\dd""
 d
 d";
-            group.Footer = "fff";
+            group.Footer = "fff";*/
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
@@ -36,7 +51,7 @@ d";
             Assert.AreEqual(oldGroups, newGroups);
             
         }
-        [Test]
+      /*  [Test]
         public void EmptyGroupCreationTest()
         {
             
@@ -57,7 +72,7 @@ d";
             Assert.AreEqual(oldGroups, newGroups);
 
 
-        }
+        }*/
 
         [Test]
         public void BadNameGroupCreationTest()
