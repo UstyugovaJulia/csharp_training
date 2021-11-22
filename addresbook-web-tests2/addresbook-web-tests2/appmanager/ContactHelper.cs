@@ -330,7 +330,7 @@ namespace WebAddressbookTests
                 .FindElements(By.TagName("b"));
             //  IList<IWebElement> cells = driver.FindElements(By.Id("content"))[index]
             //      .FindElements(By.TagName("b"));
-            IList<IWebElement> otherAll = driver.FindElements(By.Id("content"));
+           IList<IWebElement> otherAll = driver.FindElements(By.Id("content"));
           
 
             string fio = fios[0].Text;
@@ -351,6 +351,7 @@ namespace WebAddressbookTests
             InitContactModification(0);
             string firstname = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string lastname = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string middlename = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
 
             string home = driver.FindElement(By.Name("home")).GetAttribute("value");
@@ -359,7 +360,7 @@ namespace WebAddressbookTests
             string email = driver.FindElement(By.Name("email")).GetAttribute("value");
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
 
-            return new ContactData(firstname, lastname)
+            return new ContactData(firstname, lastname,middlename)
             {
                 Address = address,
                 Home=home,

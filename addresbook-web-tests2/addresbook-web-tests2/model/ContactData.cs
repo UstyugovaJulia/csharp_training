@@ -10,7 +10,7 @@ namespace WebAddressbookTests
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
        // private string firstname;
-        private string middlename="";
+      //  private string middlename="";
       //  private string lastname ="";
         private string nickname="";
         private string birthday = "";
@@ -30,6 +30,13 @@ namespace WebAddressbookTests
         private string homepage = "";
         private string allPhones;
         private string allEmails;
+
+        public ContactData(string firstname, string lastname,string middlename)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            Middlename = middlename;
+        }
 
         public ContactData(string firstname, string lastname)
         {
@@ -58,7 +65,10 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return "firstname=" + Firstname + "\nlastname="+Lastname;
+            // return "firstname=" + Firstname + "\nmiddlename"+Middlename+ "\nlastname=" +Lastname;
+            //   return "firstname=" + Firstname + " "+Middlename+ " "+Lastname;
+               return Firstname+" "+Middlename+" "+Lastname;
+
         }
 
         public int CompareTo(ContactData other)
@@ -90,8 +100,8 @@ namespace WebAddressbookTests
 
 
 
-        public string Middlename
-        {
+        public string Middlename { get; set; }
+        /*{
             get
             {
 
@@ -103,7 +113,7 @@ namespace WebAddressbookTests
             {
                 middlename = value;
             }
-        }
+        }*/
 
       /*  public string Lastname
         {

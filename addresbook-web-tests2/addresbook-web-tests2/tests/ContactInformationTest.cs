@@ -34,10 +34,12 @@ namespace WebAddressbookTests
             ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(0);
 
             //verification
-           /* Assert.AreEqual(fromTable, fromForm);
-            Assert.AreEqual(fromTable., fromForm.Address);
-            Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
-            Assert.AreEqual(fromTable.AllEmails, fromForm.AllEmails);*/
+            // Assert.AreEqual(fromTable.Firstname, fromForm.Firstname);
+             Assert.AreEqual(fromTable.Firstname+fromTable.Middlename+fromTable.Lastname, fromForm);
+
+            /* Assert.AreEqual(fromTable., fromForm.Address);
+             Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
+             Assert.AreEqual(fromTable.AllEmails, fromForm.AllEmails);*/
 
         }
     }
