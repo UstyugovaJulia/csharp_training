@@ -316,7 +316,13 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+
+
+
+
+
+                      //return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                    return  ((Email) +"\r\n"+(Email2) + (Email3));
                 }
             }
 
