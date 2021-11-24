@@ -12,24 +12,25 @@ namespace WebAddressbookTests
        // private string firstname;
       //  private string middlename="";
       //  private string lastname ="";
-        private string nickname="";
-        private string birthday = "";
-        private string birthmonth = "";
-        private string birthyear = "";
-        private string anniverday = "";
+       // private string nickname="";
+      //  private string birthday = "";
+      //  private string birthmonth = "";
+      //  private string birthyear = "";
+      /*  private string anniverday = "";
         private string annivermonth = "";
-        private string anniveryear = "";
+        private string anniveryear = "";*/
         private string title = "";
         private string company= "";
         //private string address = "";
-        private string home = "";
+       // private string home = "";
       //  private string mobileNumber = "";
        // private string workNumber = "";
        // private string email = "";
        // private string email2 = "";
-        private string homepage = "";
+      //  private string homepage = "";
         private string allPhones;
         private string allEmails;
+        private string otherN;
 
         public ContactData(string firstname, string lastname,string middlename)
         {
@@ -37,6 +38,29 @@ namespace WebAddressbookTests
             Lastname = lastname;
             Middlename = middlename;
         }
+
+        public ContactData(string firstname, string lastname, string middlename, string nickname,string address, string home,string mobileNumber,
+            string email, string email2, string homepage, string birthday, string birthmonth, string birthyear, string anniverday,string annivermonth, string anniveryear)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            Middlename = middlename;
+            Nickname = nickname;
+            Address = address;
+            Home = home;
+            MobileNumber = mobileNumber;
+            Email = email;
+            Email2 = email2;
+            Homepage = homepage;
+            Birthday = birthday;
+            Birthmonth = birthmonth;
+            Birthyear = birthyear;
+            Anniverday = anniverday;
+            Annivermonth = annivermonth;
+            Anniveryear = anniveryear;
+
+        }
+
 
         public ContactData(string firstname, string lastname)
         {
@@ -67,7 +91,8 @@ namespace WebAddressbookTests
         {
             // return "firstname=" + Firstname + "\nmiddlename"+Middlename+ "\nlastname=" +Lastname;
             //   return "firstname=" + Firstname + " "+Middlename+ " "+Lastname;
-               return Firstname+" "+Middlename+" "+Lastname;
+            return (Firstname + Middlename  + Lastname + Nickname + Address + Home + MobileNumber + Email + Email2 + Homepage + Birthday 
+                + Birthmonth +  Birthyear + Anniverday + Annivermonth + Anniveryear);
 
         }
 
@@ -101,144 +126,25 @@ namespace WebAddressbookTests
 
 
         public string Middlename { get; set; }
-        /*{
-            get
-            {
+       
 
-                return middlename;
-
-            }
-
-            set
-            {
-                middlename = value;
-            }
-        }*/
-
-      /*  public string Lastname
-        {
-            get
-            {
-
-                return lastname;
-
-            }
-
-            set
-            {
-                lastname = value;
-            }
-        }*/
-
-        public string Nickname
-        {
-            get
-            {
-
-                return nickname;
-
-            }
-
-            set
-            {
-                nickname = value;
-            }
-        }
+        public string Nickname { get; set; }
+        
         
        
-        public string Birthday
-        {
-            get
-            {
-
-                return birthday;
-
-            }
-
-            set
-            {
-                birthday = value;
-            }
-        }
-
-        public string Birthmonth
-        {
-            get
-            {
-
-                return birthmonth;
-
-            }
-
-            set
-            {
-                birthmonth = value;
-            }
-        }
-
-        public string Birthyear
-        {
-            get
-            {
-
-                return birthyear;
-
-            }
-
-            set
-            {
-                birthyear = value;
-            }
-        }
-
+        public string Birthday { get; set; }
+        
+        public string Birthmonth { get; set; }
        
+        public string Birthyear { get; set; }
        
 
-        public string Anniverday
-        {
-            get
-            {
-
-                return anniverday;
-
-            }
-
-            set
-            {
-                anniverday = value;
-            }
-        }
-
-        public string Annivermonth
-        {
-            get
-            {
-
-                return annivermonth;
-
-            }
-
-            set
-            {
-                annivermonth = value;
-            }
-        }
-
-        public string Anniveryear
-        {
-            get
-            {
-
-                return anniveryear;
-
-            }
-
-            set
-            {
-                anniveryear = value;
-            }
-        }
-
+        public string Anniverday { get; set; }
+        
+        public string Annivermonth { get; set; }
+        
+        public string Anniveryear { get; set; }
+        
         public string Title
         {
             get
@@ -306,6 +212,26 @@ namespace WebAddressbookTests
                 allPhones = value;
             } 
         }
+
+        public string OtherN
+        {
+            get
+            {
+                if (OtherN != null)
+                {
+                    return OtherN;
+                }
+                else
+                {
+                    return (CleanUp(Firstname)).Trim();
+                }
+            }
+
+            set
+            {
+                otherN = value;
+            }
+        }
         public string AllEmails
         {
             get
@@ -316,11 +242,6 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-
-
-
-
-
                       //return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
                     return  ((Email) +"\r\n"+(Email2) + (Email3));
                 }
@@ -343,23 +264,10 @@ namespace WebAddressbookTests
                    //home.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
         }
 
-      //  public string AllEmails { get; set; }
 
+        
 
-        public string Homepage
-        {
-            get
-            {
-
-                return homepage;
-
-            }
-
-            set
-            {
-                homepage = value;
-            }
-        }
-
+        public string Homepage { get; set; }
+        
     }
 }

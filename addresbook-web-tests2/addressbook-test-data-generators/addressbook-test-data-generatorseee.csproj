@@ -6,4 +6,10 @@
     <RootNamespace>addressbook_test_data_generators</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="Program.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>
