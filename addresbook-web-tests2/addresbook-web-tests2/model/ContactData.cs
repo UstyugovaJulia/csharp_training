@@ -31,6 +31,7 @@ namespace WebAddressbookTests
         private string allPhones;
         private string allEmails;
         private string otherN;
+        
 
         public ContactData(string firstname, string lastname,string middlename)
         {
@@ -40,7 +41,7 @@ namespace WebAddressbookTests
         }
 
         public ContactData(string firstname, string lastname, string middlename, string nickname,string address, string home,string mobileNumber,
-            string email, string email2, string homepage, string birthday, string birthmonth, string birthyear, string anniverday,string annivermonth, string anniveryear)
+            string email, string email2, string email3, string homepage, string birthday, string birthmonth, string birthyear, string anniverday,string annivermonth, string anniveryear)
         {
             Firstname = firstname;
             Lastname = lastname;
@@ -51,6 +52,7 @@ namespace WebAddressbookTests
             MobileNumber = mobileNumber;
             Email = email;
             Email2 = email2;
+            Email3 = email3;
             Homepage = homepage;
             Birthday = birthday;
             Birthmonth = birthmonth;
@@ -242,8 +244,12 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                      //return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
-                    return  ((Email) +"\r\n"+(Email2) + (Email3));
+                    //return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                    string[] emails = new[] { Email, Email2, Email3 };
+                    string Test = string.Join("\r\n", emails.Where(test =>!String.IsNullOrEmpty(test)));
+
+                    return Test;
+                   // return  ((Email) +(Email2) + (Email3)).Trim();
                 }
             }
 

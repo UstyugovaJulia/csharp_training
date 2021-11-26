@@ -44,7 +44,7 @@ namespace WebAddressbookTests
                 fromForm.Email+ "\r\n"+fromForm.Email2+ "\r\nHomepage:\r\n"+fromForm.Homepage+ "\r\n\r\nBirthday "+
                 fromForm.Birthday+ ". "+ fromForm.Birthmonth+ " "+ fromForm.Birthyear + " (41)\r\nAnniversary "
                 +fromForm.Anniverday + ". " + fromForm.Annivermonth + " " + fromForm.Anniveryear + " (41)");
-            // );
+            // );<> ""
             /* Assert.AreEqual(fromTable., fromForm.Address);
              Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
              Assert.AreEqual(fromTable.AllEmails, fromForm.AllEmails);*/

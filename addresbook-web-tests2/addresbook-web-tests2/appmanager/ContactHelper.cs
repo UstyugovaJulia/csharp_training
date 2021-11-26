@@ -94,6 +94,7 @@ namespace WebAddressbookTests
             string workNumber = driver.FindElement(By.Name("work")).GetAttribute("value");
             string email = driver.FindElement(By.Name("email")).GetAttribute("value");
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
             string homepage = driver.FindElement(By.Name("homepage")).GetAttribute("value");
             string birthday = driver.FindElement(By.Name("bday")).GetAttribute("value");
             string birthmonth = driver.FindElement(By.Name("bmonth")).GetAttribute("value");
@@ -104,7 +105,7 @@ namespace WebAddressbookTests
 
          
 
-            return new ContactData(firstname,lastname, middlename, nickname,address,home,mobileNumber,email,email2,homepage, birthday,birthmonth,birthyear, anniverday, annivermonth, anniveryear)
+            return new ContactData(firstname,lastname, middlename, nickname,address,home,mobileNumber,email,email2,email3,homepage, birthday,birthmonth,birthyear, anniverday, annivermonth, anniveryear)
             {
                 /*Address = address,
                 Home = home,
@@ -398,15 +399,16 @@ namespace WebAddressbookTests
             string workNumber = driver.FindElement(By.Name("work")).GetAttribute("value");
             string email = driver.FindElement(By.Name("email")).GetAttribute("value");
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
-
-            return new ContactData(firstname, lastname,middlename)
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+            return new ContactData(firstname, lastname, middlename)
             {
                 Address = address,
-                Home=home,
-                MobileNumber=mobileNumber,
-                WorkNumber=workNumber,
-                Email=email,
-                Email2=email2
+                Home = home,
+                MobileNumber = mobileNumber,
+                WorkNumber = workNumber,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3,
 
             };
         }
