@@ -31,7 +31,10 @@ namespace WebAddressbookTests
         private string allPhones;
         private string allEmails;
         private string otherN;
-        
+
+        public ContactData() 
+        { 
+        }
 
         public ContactData(string firstname, string lastname,string middlename)
         {
@@ -69,6 +72,7 @@ namespace WebAddressbookTests
             Firstname = firstname;
             Lastname = lastname;
         }
+
         public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
@@ -97,6 +101,7 @@ namespace WebAddressbookTests
                 + Birthmonth +  Birthyear + Anniverday + Annivermonth + Anniveryear);
 
         }
+
 
         public int CompareTo(ContactData other)
         {

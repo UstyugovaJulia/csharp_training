@@ -124,7 +124,7 @@ namespace WebAddressbookTests
             Type(By.Name("middlename"), contact.Middlename);
             Type(By.Name("lastname"), contact.Lastname);
             Type(By.Name("nickname"), contact.Nickname);
-            driver.FindElement(By.Name("bday")).Click();
+            /*driver.FindElement(By.Name("bday")).Click();
             new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Birthday);
             driver.FindElement(By.XPath("//div[@id='content']/form/select/option[31]")).Click();
             driver.FindElement(By.Name("bmonth")).Click();
@@ -143,7 +143,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//div[@id='content']/form/select[4]/option[12]")).Click();
             driver.FindElement(By.Name("ayear")).Click();
             driver.FindElement(By.Name("ayear")).Clear();
-            driver.FindElement(By.Name("ayear")).SendKeys(contact.Anniveryear);
+            driver.FindElement(By.Name("ayear")).SendKeys(contact.Anniveryear);*/
             return this;
         }
 
