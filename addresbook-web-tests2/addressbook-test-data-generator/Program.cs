@@ -73,8 +73,8 @@ namespace addressbook_test_data_generator
                 {
                     contacts.Add(new ContactData(TestBase.GeneratrRandomString(10))
                     {
-                        Firstname = TestBase.GeneratrRandomString(100),
                         Lastname = TestBase.GeneratrRandomString(100),
+                        Middlename = TestBase.GeneratrRandomString(100)
 
                     });
                 }

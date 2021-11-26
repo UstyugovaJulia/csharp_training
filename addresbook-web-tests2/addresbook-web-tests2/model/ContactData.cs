@@ -9,25 +9,8 @@ namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-       // private string firstname;
-      //  private string middlename="";
-      //  private string lastname ="";
-       // private string nickname="";
-      //  private string birthday = "";
-      //  private string birthmonth = "";
-      //  private string birthyear = "";
-      /*  private string anniverday = "";
-        private string annivermonth = "";
-        private string anniveryear = "";*/
         private string title = "";
         private string company= "";
-        //private string address = "";
-       // private string home = "";
-      //  private string mobileNumber = "";
-       // private string workNumber = "";
-       // private string email = "";
-       // private string email2 = "";
-      //  private string homepage = "";
         private string allPhones;
         private string allEmails;
         private string otherN;
@@ -42,6 +25,7 @@ namespace WebAddressbookTests
             Lastname = lastname;
             Middlename = middlename;
         }
+
 
         public ContactData(string firstname, string lastname, string middlename, string nickname,string address, string home,string mobileNumber,
             string email, string email2, string email3, string homepage, string birthday, string birthmonth, string birthyear, string anniverday,string annivermonth, string anniveryear)
@@ -96,7 +80,7 @@ namespace WebAddressbookTests
         public override string ToString()
         {
             // return "firstname=" + Firstname + "\nmiddlename"+Middlename+ "\nlastname=" +Lastname;
-            //   return "firstname=" + Firstname + " "+Middlename+ " "+Lastname;
+             //  return  Firstname +Lastname+Middlename;
             return (Firstname + Middlename  + Lastname + Nickname + Address + Home + MobileNumber + Email + Email2 + Homepage + Birthday 
                 + Birthmonth +  Birthyear + Anniverday + Annivermonth + Anniveryear);
 
