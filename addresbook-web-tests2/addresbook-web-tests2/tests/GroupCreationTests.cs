@@ -6,6 +6,7 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace WebAddressbookTests
@@ -47,26 +48,18 @@ namespace WebAddressbookTests
 
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
-            /*List<GroupData> groups = new List<GroupData>();
-             string[] lines = File.ReadAllLines(@"groups.xml");
-             foreach (string l in lines)
-             {
-                 string[] parts = l.Split(',');
-                 groups.Add(new GroupData(parts[0])
-                 {
-                     Header = parts[1],
-                     Footer = parts[2]
-                 });
-             }*/
             return (List<GroupData>)
                 new XmlSerializer(typeof(List<GroupData>))
-                .Deserialize(new StreamReader(@"groups.xml"));
-
-             
-
+                .Deserialize(new StreamReader(@"groups.xml"));    
         }
 
-        [Test, TestCaseSource("GroupDataFromXmlFile")]
+        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject <List < GroupData >>(
+                File.ReadAllText(@"groups.json"));
+                   }
+
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest( GroupData group)
         {
             
