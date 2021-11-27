@@ -13,7 +13,7 @@ namespace WebAddressbookTests
         private string company= "";
         private string allPhones;
         private string allEmails;
-        private string otherN;
+       // private string otherN;
 
         public ContactData() 
         { 
@@ -204,11 +204,11 @@ namespace WebAddressbookTests
             } 
         }
 
-        public string OtherN
+     /*   public string OtherN
         {
             get
             {
-                if (OtherN != null)
+                if (otherN != null)
                 {
                     return OtherN;
                 }
@@ -222,7 +222,7 @@ namespace WebAddressbookTests
             {
                 otherN = value;
             }
-        }
+        }*/
         public string AllEmails
         {
             get

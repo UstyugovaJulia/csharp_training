@@ -41,8 +41,8 @@ namespace WebAddressbookTests
                 string[]parts=s.Split(',');
                 contacts.Add(new ContactData(parts[0])
                 {
-                    Firstname=parts[1],
-                    Lastname=parts[2]
+                   Lastname =parts[1],
+                   Middlename=parts[2]
                 });
             }
                 return contacts;

@@ -51,8 +51,8 @@ namespace addressbook_test_data_generator
                      System.Console.Out.Write("Unrecognize format " + format);
                  }
                  writer.Close();
-             }else
-            if (type == "contacts")
+             }
+            else if (type == "contacts")
             {
                 //рабочий код
                /* List<ContactData> contacts = new List<ContactData>();
@@ -112,7 +112,7 @@ namespace addressbook_test_data_generator
         {
             foreach (ContactData contact in contacts)
             {
-                writer.WriteLine(String.Format("${0},${1},${2}",
+                writer.WriteLine(String.Format("${0};${1};${2}",
 contact.Firstname, contact.Lastname, contact.Middlename));
             }
         }
@@ -121,7 +121,7 @@ contact.Firstname, contact.Lastname, contact.Middlename));
         {
             foreach (GroupData group in groups)
             {
-                writer.WriteLine(String.Format("${0},${1},${2}",
+                writer.WriteLine(String.Format("${0};${1};${2}",
 group.Name, group.Header, group.Footer));
             }
         }
