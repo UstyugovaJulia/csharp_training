@@ -43,6 +43,16 @@ namespace WebAddressbookTests
 
         }
 
+        public ContactHelper Edit(ContactData contact, ContactData newData)
+        {
+            manager.Navigator.GoToHomePage();
+
+            GoToContactPage();
+            SelectedContact(contact.Id);
+            ReturnToContactPage();
+            return this;
+        }
+
         public ContactHelper Remove(ContactData contact)
         {
             manager.Navigator.GoToHomePage();
@@ -57,7 +67,7 @@ namespace WebAddressbookTests
             manager.Navigator.GoToCreationContactPage();
             ContactData contact = new ContactData("Иванов","Петр");
            // contact.Lastname = "Петр";
-            contact.Middlename = "Иванович";
+           /* contact.Middlename = "Иванович";
             contact.Nickname = "Ivanov";
             contact.Birthday = "14";
             contact.Birthmonth = "May";
@@ -72,7 +82,7 @@ namespace WebAddressbookTests
             contact.WorkNumber = "79131231212";
             contact.Email = "12@ya.ru";
             contact.Email2 = "13@ya.ru";
-            contact.Homepage = "34";
+            contact.Homepage = "34";*/
             manager.Contacts
                 .FillContactFormFIONickName(contact)
                 .FillContactFormCompanyData(contact)
@@ -83,7 +93,29 @@ namespace WebAddressbookTests
 
         }
 
-        internal ContactData GetContactInformationFromViewEditForm(int index)
+       
+
+       
+
+        public ContactHelper SelectedContact(string id)
+        {
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            return this;
+        }
+
+        public ContactHelper Create(ContactData contact)
+        {
+            manager.Navigator.GoToCreationContactPage();
+            manager.Contacts
+               .FillContactFormFIONickName(contact)
+               .FillContactFormCompanyData(contact)
+               .FillContactFormSecondary()
+               .SubmitContactCreation()
+               .GoToContactPage();
+            return this;
+        }
+
+        public ContactData GetContactInformationFromViewEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
 
@@ -267,30 +299,30 @@ namespace WebAddressbookTests
             Type(By.Name("middlename"), contact.Middlename);
             Type(By.Name("lastname"), contact.Lastname);
             Type(By.Name("nickname"), contact.Nickname);
-            driver.FindElement(By.Name("bday")).Click();
-            new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Birthday);
-            driver.FindElement(By.XPath("//div[@id='content']/form/select/option[31]")).Click();
-            driver.FindElement(By.Name("bmonth")).Click();
-            new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Birthmonth);
-            driver.FindElement(By.XPath("//div[@id='content']/form/select[2]/option[9]")).Click();
-            Type(By.Name("byear"), contact.Birthyear);
-            driver.FindElement(By.Name("bmonth")).Click();
-            driver.FindElement(By.Name("aday")).Click();
-            new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText(contact.Anniverday);
-            driver.FindElement(By.XPath("//div[@id='content']/form/select[3]/option[19]")).Click();
-            driver.FindElement(By.Name("homepage")).Click();
-            driver.FindElement(By.Name("amonth")).Click();
-            new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText(contact.Annivermonth);
-            driver.FindElement(By.XPath("//div[@id='content']/form/select[4]/option[12]")).Click();
-            Type(By.Name("ayear"), contact.Anniveryear);
-            Type(By.Name("title"), contact.Title);
-            Type(By.Name("company"), contact.Company);
-            Type(By.Name("address"), contact.Address);
-            Type(By.Name("home"), contact.Home);
-            Type(By.Name("mobile"), contact.MobileNumber);
-            Type(By.Name("mobile"), contact.MobileNumber);
-            Type(By.Name("email"), contact.Email);
-            Type(By.Name("email2"), contact.Email2);
+            /*    driver.FindElement(By.Name("bday")).Click();
+                new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Birthday);
+                driver.FindElement(By.XPath("//div[@id='content']/form/select/option[31]")).Click();
+                driver.FindElement(By.Name("bmonth")).Click();
+                new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Birthmonth);
+                driver.FindElement(By.XPath("//div[@id='content']/form/select[2]/option[9]")).Click();
+                Type(By.Name("byear"), contact.Birthyear);
+                driver.FindElement(By.Name("bmonth")).Click();
+                driver.FindElement(By.Name("aday")).Click();
+                new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText(contact.Anniverday);
+                driver.FindElement(By.XPath("//div[@id='content']/form/select[3]/option[19]")).Click();
+                driver.FindElement(By.Name("homepage")).Click();
+                driver.FindElement(By.Name("amonth")).Click();
+                new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText(contact.Annivermonth);
+                driver.FindElement(By.XPath("//div[@id='content']/form/select[4]/option[12]")).Click();
+                Type(By.Name("ayear"), contact.Anniveryear);
+                Type(By.Name("title"), contact.Title);
+                Type(By.Name("company"), contact.Company);
+                Type(By.Name("address"), contact.Address);
+                Type(By.Name("home"), contact.Home);
+                Type(By.Name("mobile"), contact.MobileNumber);
+                Type(By.Name("mobile"), contact.MobileNumber);
+                Type(By.Name("email"), contact.Email);
+                Type(By.Name("email2"), contact.Email2);*/
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
             contactCache = null;
             return this;

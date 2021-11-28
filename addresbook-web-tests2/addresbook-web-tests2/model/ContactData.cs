@@ -251,14 +251,22 @@ namespace WebAddressbookTests
         [Column(Name = "deprecated")]
         public string Deprecated { get; set; }
 
-        public static List<ContactData> GetContactsAll()
+      /*  public static List<ContactData> GetContactsAll()
         {
             using (AddressBookDB db = new AddressBookDB())
             {
                 return (from c in db.Contacts.Where(x=>x.Deprecated== "0000-00-00 00:00:00") select c).ToList();
             }
-        }
+        }*/
 
+        public static List<ContactData> GetContactsAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+              
+                return (from c in db.Contacts select c).ToList();
+            }
+        }
 
     }
 }
