@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using LinqToDB.Mapping;
 
 namespace WebAddressbookTests
 {
+    [Table(Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string title = "";
@@ -109,33 +111,33 @@ namespace WebAddressbookTests
             Firstname = firstname;
 
         }
-
+        [Column(Name = "firstname")]
         public string Firstname { get; set;  }
+        [Column(Name = "lastname")]
         public string Lastname { get; set; }
 
 
 
-
+        [Column(Name = "middlename")]
         public string Middlename { get; set; }
-       
 
+        [Column(Name = "nickname")]
         public string Nickname { get; set; }
-        
-        
-       
-        public string Birthday { get; set; }
-        
-        public string Birthmonth { get; set; }
-       
-        public string Birthyear { get; set; }
-       
 
+        [Column(Name = "bday")]
+        public string Birthday { get; set; }
+        [Column(Name = "bmonth")]
+        public string Birthmonth { get; set; }
+        [Column(Name = "byear")]
+        public string Birthyear { get; set; }
+
+        [Column(Name = "aday")]
         public string Anniverday { get; set; }
-        
+        [Column(Name = "amonth")]
         public string Annivermonth { get; set; }
-        
+        [Column(Name = "ayear")]
         public string Anniveryear { get; set; }
-        
+        [Column(Name = "title")]
         public string Title
         {
             get
@@ -150,7 +152,7 @@ namespace WebAddressbookTests
                 title = value;
             }
         }
-
+        [Column(Name = "company")]
         public string Company
         {
             get
@@ -165,23 +167,24 @@ namespace WebAddressbookTests
                 company = value;
             }
         }
-
+        [Column(Name = "address")]
         public string Address { get; set; }
-        
+        [Column(Name = "home")]
         public string Home { get; set; }
-        
+        [Column(Name = "mobile")]
         public string MobileNumber { get; set; }
-       
 
 
 
+        [Column(Name = "work")]
         public string WorkNumber { get; set; }
-        
 
 
+        [Column(Name = "email")]
         public string Email { get; set; }
-        
+        [Column(Name = "email2")]
         public string Email2 { get; set; }
+        [Column(Name = "email3")]
         public string Email3 { get; set; }
 
 
@@ -204,25 +207,7 @@ namespace WebAddressbookTests
             } 
         }
 
-     /*   public string OtherN
-        {
-            get
-            {
-                if (otherN != null)
-                {
-                    return OtherN;
-                }
-                else
-                {
-                    return (CleanUp(Firstname)).Trim();
-                }
-            }
-
-            set
-            {
-                otherN = value;
-            }
-        }*/
+   
         public string AllEmails
         {
             get
@@ -258,11 +243,22 @@ namespace WebAddressbookTests
             return Regex.Replace(home, "[ -()]", "") + "\r\n";
                    //home.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
         }
+        [Column(Name = "id"), PrimaryKey, Identity]
+        public string Id { get; set; }
 
-
-        
-
+        [Column(Name = "homepage")]
         public string Homepage { get; set; }
-        
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
+
+        public static List<ContactData> GetContactsAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts.Where(x=>x.Deprecated== "0000-00-00 00:00:00") select c).ToList();
+            }
+        }
+
+
     }
 }

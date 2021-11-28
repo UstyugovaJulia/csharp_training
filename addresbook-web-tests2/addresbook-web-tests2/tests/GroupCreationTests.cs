@@ -8,11 +8,12 @@ using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : AuthTestBase
+    public class GroupCreationTests : GroupTestBase
     {
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
@@ -62,55 +63,22 @@ namespace WebAddressbookTests
         [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest( GroupData group)
         {
-            
-        /*    GroupData group = new GroupData("aaa");
-            group.Header = @"d\dd""
-d
-d";
-            group.Footer = "fff";*/
-
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll(); 
 
             app.Groups.Create(group);
 
-
-           
             Assert.AreEqual(oldGroups.Count+1, app.Groups.GetGroupCount());
 
-            List<GroupData> newGroups =app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
-            
         }
-      /*  [Test]
-        public void EmptyGroupCreationTest()
-        {
-            
-            GroupData group = new GroupData("");
-            group.Header = "";
-            group.Footer = "";
-
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-
-            app.Groups.Create(group);
-
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
-
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
-
-
-        }*/
 
         [Test]
         public void BadNameGroupCreationTest()
         {
-
             GroupData group = new GroupData("a'a");
             group.Header = "ddd";
             group.Footer = "fff";
@@ -124,10 +92,29 @@ d";
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
-
         }
 
+        [Test]
+        public void TestDBConnectivity() 
+        {
+            /*DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
 
+            start = DateTime.Now;
+            List<GroupData> fromDb = GroupData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));*/
+            /* foreach (ContactData contact in GroupData.GetAll()[0].GetContacts()) {
+                 System.Console.Out.WriteLine(contact);
+             }*/
+
+            foreach (ContactData contact in ContactData.GetContactsAll()) {
+                System.Console.Out.WriteLine(contact.Deprecated);
+            }
+
+        }
 
     }
 }

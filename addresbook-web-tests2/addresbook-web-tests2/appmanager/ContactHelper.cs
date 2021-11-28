@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
-
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -26,14 +26,11 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             GoToContactPage();
-            //ContactNot(v);
             ContactRemoval(v);
             ReturnToContactPage();
             return this;
 
         }
-
-        
 
         public ContactHelper Edit(int v)
         {
@@ -46,7 +43,15 @@ namespace WebAddressbookTests
 
         }
 
-       
+        public ContactHelper Remove(ContactData contact)
+        {
+            manager.Navigator.GoToHomePage();
+            GoToContactPage();
+            ContactRemoval(contact.Id);
+            ReturnToContactPage();
+            return this;
+        }
+
         public ContactHelper Create(int v)
         {
             manager.Navigator.GoToCreationContactPage();
@@ -189,31 +194,20 @@ namespace WebAddressbookTests
         }
 
 
-      /*  public ContactHelper ContactNot(int v)
-        {
-
-            var EditIcon = driver.FindElements(By.XPath("//img[@alt='Edit']"));
-            if (EditIcon != null)
-            {
-                Create(v);
-            }
-
-            return this;
-        }*/
         public ContactHelper ContactRemoval(int v)
         {
-            /* var EditIcon=driver.FindElements(By.XPath("//img[@alt='Edit']"));
-             if (EditIcon == null || EditIcon.Count == 0)
-             {
-
-                 Create(v);
-
-             }
-             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-             driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
-             return this;*/
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
+            contactCache = null;
+            return this;
+        }
+
+        public ContactHelper ContactRemoval(String id)
+        {
+            driver.FindElement(By.XPath("//input[@name='selected[]'and @id='" + id + "']")).Click();
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
+           
             contactCache = null;
             return this;
         }
@@ -317,21 +311,11 @@ namespace WebAddressbookTests
                 {
                     var column = element.FindElements(By.CssSelector("td"));
                     contactCache.Add(new ContactData(element.Text) { Lastname = column[1].Text, Firstname = column[2].Text });
-                    // contacts.Add(new ContactData(element.Text) { Firstname=column[2].Text});
 
                 }
 
             }
-          /*  List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
-            foreach (IWebElement element in elements)
-            {
-                var column = element.FindElements(By.CssSelector("td"));
-                 contacts.Add(new ContactData(element.Text) { Lastname = column[1].Text, Firstname=column[2].Text});
-                // contacts.Add(new ContactData(element.Text) { Firstname=column[2].Text});
-
-            }*/
+          
             return new List<ContactData> (contactCache);
         }
 
@@ -366,20 +350,10 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             ViewContact(1);
-
-           /* IList<IWebElement> fios = driver.FindElements(By.Id("content"))[index]
-                .FindElements(By.TagName("b"));*/
             IList<IWebElement> otherAll = driver.FindElements(By.Id("content"));
-          
-
-           // string fio = fios[0].Text;
             string otherN = otherAll[0].Text;
-
             return new ContactData(otherN);
-            /*
-            { 
-            OtherN= otherN,
-            };*/
+          
 
         }
 
@@ -426,6 +400,37 @@ namespace WebAddressbookTests
            string text= driver.FindElement(By.TagName("label")).Text;
            Match m= new Regex(@"\d+").Match(text);
             return Int32.Parse(m.Value);
+        }
+
+        public void AddContactToGroup(ContactData contact, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            ClearGroupFilter();
+            SelectedInContact(contact.Id);
+            SelectGroupToAdd(group.Name);
+            CommitAddingContactToGroup();
+          //  new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+              // .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        public void CommitAddingContactToGroup()
+        {
+            driver.FindElement(By.Name("add")).Click();
+        }
+
+        public void SelectGroupToAdd(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+        }
+
+        public void SelectedInContact(string contactId)
+        {
+            driver.FindElement(By.Id(contactId)).Click();
+        }
+
+        public void ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
         }
     }
 }

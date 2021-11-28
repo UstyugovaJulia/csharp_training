@@ -54,19 +54,6 @@ namespace addressbook_test_data_generator
              }
             else if (type == "contacts")
             {
-                //рабочий код
-               /* List<ContactData> contacts = new List<ContactData>();
-                for (int i = 0; i < count; i++)
-                {
-
-                    writer.WriteLine(String.Format("${0},${1},${2}",
-                        TestBase.GeneratrRandomString(10),
-                        TestBase.GeneratrRandomString(10),
-                        TestBase.GeneratrRandomString(10)
-                        ));
-                }
-                    //TestBase.GeneratrRandomString(10);
-                writer.Close();*/
                 
                 List<ContactData> contacts = new List<ContactData>();
                 for (int i = 0; i < count; i++)
