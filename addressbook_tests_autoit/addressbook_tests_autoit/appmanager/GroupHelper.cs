@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using addressbook_tests_autoit;
+//using addressbook_tests_autoit;
 
 namespace addressbook_tests_autoit
 {
