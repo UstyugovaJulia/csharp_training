@@ -16,8 +16,11 @@ namespace addressbook_tests_white
     public class GroupHelper:HelperBase
     {
         public static string GROUPWINTITLE = "Group editor";
+        public static string DELETEGROUPWINTITLE = "Delete group";
         public GroupHelper(ApplicationManager manager) : base(manager) { 
         }
+
+       
 
         public List<GroupData> GetGroupList()
         {
@@ -48,6 +51,25 @@ namespace addressbook_tests_white
             CloseGroupsDialogue(dialogue);
         }
 
+        public void Del(GroupData newGroup)
+        {
+            Window dialogue = OpenGroupsDialogue();
+           // Window dialogue = OpenGroupsDialogue();
+            dialogue.Get<Button>("uxNewAddressButton").Click();
+            TextBox textBox = (TextBox)dialogue.Get(SearchCriteria.ByControlType(ControlType.Edit));
+            // dialogue.Get<Button>("uxEditAddressButton").Click();
+            dialogue.Get<Button>("uxDeleteAddressButton").Click();
+            //Window dialoguedel = OpenGroupsDeleteDialogue();
+            dialogue.Get<Button>("uxOKAddressButton").Click(); 
+          //  Window dialoguedel = OpenGroupsDeleteDialogue();
+            // TextBox textBox = (TextBox)dialogue.Get(SearchCriteria.ByControlType(ControlType.Edit));
+            // textBox.Enter(newGroup.Name);
+            // Keyboard.Instance.PressSpecialKey(KeyboardInput.SpecialKeys.RETURN);
+            //aux.Send("{ENTER}");
+           // CloseGroupsDialogue(dialoguedel);
+            CloseGroupsDialogue(dialogue);
+        }
+
         private void CloseGroupsDialogue(Window dialogue)
         {
             dialogue.Get<Button>("uxCloseAddressButton").Click();
@@ -58,6 +80,12 @@ namespace addressbook_tests_white
         {
             manager.MainWindow.Get<Button>("groupButton").Click();
             return manager.MainWindow.ModalWindow(GROUPWINTITLE);
+        }
+
+        private Window OpenGroupsDeleteDialogue()
+        {
+            //manager.MainWindow.Get<Button>("groupButton").Click();
+            return manager.MainWindow.ModalWindow(DELETEGROUPWINTITLE);
         }
     }
 }
