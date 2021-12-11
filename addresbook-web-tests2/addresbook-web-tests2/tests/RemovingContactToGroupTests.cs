@@ -11,7 +11,8 @@ namespace WebAddressbookTests
         [Test]
         public void TestRemovingContactToGroup()
         {
-           //new
+            //new
+            app.Navigator.GoToGroupsPage();
             if (app.Groups.GetGroupCount() == 0)
            {
                GroupData groups = new GroupData("aaa");
@@ -22,16 +23,21 @@ namespace WebAddressbookTests
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
             //new
-            if (app.Contacts.NotContact())
-           {
-               app.Contacts.Create(1);
-           }
-            ContactData contacts = ContactData.GetContactsAll().Except(oldList).First();
+            if (oldList.Count==0) 
+            {
+                app.Navigator.GoToHomePage();
+                if (app.Contacts.NotContact())
+                {
+                    app.Contacts.Create(1);
+                }
+                ContactData contacts = ContactData.GetContactsAll().Except(oldList).First();
 
-            app.Contacts.AddContactToGroup(contacts, group);
-            ContactData contact = ContactData.GetContactsGroup(group.Id).First();
+                app.Contacts.AddContactToGroup(contacts, group);
+                
+            }
+
             //new
-          
+            ContactData contact = ContactData.GetContactsGroup(group.Id).First();
             app.Contacts.RemoveContactToGroup(contact,group);
 
             // actions
