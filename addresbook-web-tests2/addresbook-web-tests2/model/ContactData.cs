@@ -15,6 +15,7 @@ namespace WebAddressbookTests
         private string company= "";
         private string allPhones;
         private string allEmails;
+        private string allContacts;
        // private string otherN;
 
         public ContactData() 
@@ -230,6 +231,31 @@ namespace WebAddressbookTests
             set
             {
                 allEmails = value;
+            }
+        }
+
+        public string AllContacts
+        {
+            get
+            {
+                if (allContacts != null)
+                {
+                    return allContacts;
+                }
+                else
+                {
+                   
+                    string[] contacts = new[] { Firstname, Middlename, Lastname, Nickname };
+                    string Test = string.Join(" ", contacts.Where(test => !String.IsNullOrEmpty(test)));
+
+                    return Test;
+                    
+                }
+            }
+
+            set
+            {
+                allContacts = value;
             }
         }
 

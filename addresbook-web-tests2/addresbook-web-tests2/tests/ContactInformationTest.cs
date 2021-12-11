@@ -39,11 +39,13 @@ namespace WebAddressbookTests
             //  Assert.AreEqual(fromTable, fromForm);
             //более верно
             //   Assert.AreEqual(fromForm, fromTable);
-            Assert.AreEqual(fromTable.Firstname, fromForm.Firstname + " " + fromForm.Middlename + " " + fromForm.Lastname + "\r\n" + fromForm.Nickname 
-                + "\r\nTitleTest\r\n" + fromForm.Address + "\r\n\r\nH: "+ fromForm.Home+ "\r\nM: "+fromForm.MobileNumber+ "\r\n\r\n"+
-                fromForm.Email+ "\r\n"+fromForm.Email2+ "\r\nHomepage:\r\n"+fromForm.Homepage+ "\r\n\r\nBirthday "+
-                fromForm.Birthday+ ". "+ fromForm.Birthmonth+ " "+ fromForm.Birthyear + " (41)\r\nAnniversary "
-                +fromForm.Anniverday + ". " + fromForm.Annivermonth + " " + fromForm.Anniveryear + " (41)");
+            Assert.AreEqual(fromTable.Firstname, fromForm.AllContacts);
+            /*upd 11/12
+            Assert.AreEqual(fromTable.Firstname, fromForm.Firstname + " " + fromForm.Middlename + " " + fromForm.Lastname + "\r\n" + fromForm.Nickname
+               + "\r\nTitleTest\r\n" + fromForm.Address + "\r\n\r\nH: " + fromForm.Home + "\r\nM: " + fromForm.MobileNumber + "\r\n\r\n" +
+               fromForm.Email + "\r\n" + fromForm.Email2 + "\r\nHomepage:\r\n" + fromForm.Homepage + "\r\n\r\nBirthday " +
+               fromForm.Birthday + ". " + fromForm.Birthmonth + " " + fromForm.Birthyear + " (41)\r\nAnniversary "
+               + fromForm.Anniverday + ". " + fromForm.Annivermonth + " " + fromForm.Anniveryear + " (41)");*/
             // );<> ""
             /* Assert.AreEqual(fromTable., fromForm.Address);
              Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
