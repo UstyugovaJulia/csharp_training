@@ -10,9 +10,21 @@ namespace WebAddressbookTests
     {
         [Test]
         public void TestAddingContactToGroup() 
-        {
+        {//new
+              if (app.Groups.GetGroupCount() == 0)
+          {
+              GroupData groups = new GroupData("одна группа");
+              groups.Header = "группа";
+              groups.Footer = "группа одна";
+              app.Groups.Create(groups);
+          }
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
+            //new
+            if (app.Contacts.NotContact())
+            {
+                app.Contacts.Create(1);
+            }
             ContactData  contact= ContactData.GetContactsAll().Except(oldList).First();
 
 

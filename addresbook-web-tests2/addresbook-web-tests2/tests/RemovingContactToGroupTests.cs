@@ -11,10 +11,27 @@ namespace WebAddressbookTests
         [Test]
         public void TestRemovingContactToGroup()
         {
+           //new
+            if (app.Groups.GetGroupCount() == 0)
+           {
+               GroupData groups = new GroupData("aaa");
+               groups.Header = "ddd";
+               groups.Footer = "fff";
+               app.Groups.Create(groups);
+           }
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
-            ContactData contact = ContactData.GetContactsGroup(group.Id).First();
+            //new
+            if (app.Contacts.NotContact())
+           {
+               app.Contacts.Create(1);
+           }
+            ContactData contacts = ContactData.GetContactsAll().Except(oldList).First();
 
+            app.Contacts.AddContactToGroup(contacts, group);
+            ContactData contact = ContactData.GetContactsGroup(group.Id).First();
+            //new
+          
             app.Contacts.RemoveContactToGroup(contact,group);
 
             // actions

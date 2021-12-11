@@ -35,8 +35,9 @@ namespace WebAddressbookTests
         public void RemoveContactToGroup(ContactData contact, GroupData group)
         {
             manager.Navigator.GoToHomePage();
-            
-            ClearGroupFilter();
+
+            ClearGroupFilterAll();
+
             SelectedInContact(contact.Id);
             SelectGroupFilter(group.Name);
             SelectedInContact(contact.Id);
@@ -463,7 +464,7 @@ namespace WebAddressbookTests
         public void AddContactToGroup(ContactData contact, GroupData group)
         {
             manager.Navigator.GoToHomePage();
-            ClearGroupFilter();
+            ClearGroupFilterNone();
             SelectedInContact(contact.Id);
             SelectGroupToAdd(group.Name);
             CommitAddingContactToGroup();
@@ -486,9 +487,16 @@ namespace WebAddressbookTests
             driver.FindElement(By.Id(contactId)).Click();
         }
 
-        public void ClearGroupFilter()
+        public void ClearGroupFilterAll()
         {
-            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+            // new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[none]");
+        }
+
+        public void ClearGroupFilterNone()
+        {
+           // new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[none]");
         }
     }
 }
