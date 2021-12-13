@@ -23,13 +23,13 @@ namespace mantis_tests
         {
             //driver.FindElements(By.CssSelector("span.bracket-link"))[0].Click();
             // driver.FindElements(By.CssSelector("div a.back-to-login-link pull-left"))[0].Click();
-            driver.FindElements(By.CssSelector(".back-to-login-link pull-left"))[0].Click();
+            driver.FindElement(By.CssSelector(".back-to-login-link pull-left")).Click();
             //back-to-login-link pull-left
         }
 
         private void SubmitRegistration()
         {
-            throw new NotImplementedException();
+            driver.FindElement(By.CssSelector("input")).Click();
         }
 
         private void FillRegistrationForm(AccountData account)
