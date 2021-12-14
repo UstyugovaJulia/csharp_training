@@ -22,14 +22,16 @@ namespace mantis_tests
         private void OpenRegistrationForm()
         {
             //driver.FindElements(By.CssSelector("span.bracket-link"))[0].Click();
-            // driver.FindElements(By.CssSelector("div a.back-to-login-link pull-left"))[0].Click();
-            driver.FindElement(By.CssSelector(".back-to-login-link pull-left")).Click();
+            //  driver.FindElements(By.CssSelector("div a.back-to-login-link pull-left"))[0].Click();
+            //  driver.FindElement(By.CssSelector("div a.back-to-login-link pull-left")).Click();
+            driver.FindElement(By.XPath("//a[@class='back-to-login-link pull-left']")).Click();
             //back-to-login-link pull-left
         }
 
         private void SubmitRegistration()
         {
-            driver.FindElement(By.CssSelector("input")).Click();
+         //   driver.FindElement(By.CssSelector("input")).Click();
+            driver.FindElement(By.XPath("//input[@class='width-40 pull-right btn btn-success btn-inverse bigger-110']")).Click();
         }
 
         private void FillRegistrationForm(AccountData account)

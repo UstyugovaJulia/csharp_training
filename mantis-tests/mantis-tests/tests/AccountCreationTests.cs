@@ -14,12 +14,12 @@ namespace mantis_tests
         [TestFixtureSetUp]
         public void setUpConfig()
         {
-            app.Ftp.BackupFile("/config_inc.php");
+           /* app.Ftp.BackupFile("/config_inc.php");
             using (Stream localFile = File.Open("/config_inc.php", FileMode.Open))
             {
                 app.Ftp.Upload("/config_inc.php", localFile);
 
-            }
+            }*/
 
         }
         [Test]
