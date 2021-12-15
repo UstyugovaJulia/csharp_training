@@ -166,10 +166,13 @@ namespace WebAddressbookTests
             string anniverday = driver.FindElement(By.Name("aday")).GetAttribute("value");
             string annivermonth = driver.FindElement(By.Name("amonth")).GetAttribute("value");
             string anniveryear = driver.FindElement(By.Name("ayear")).GetAttribute("value");
+            string company=driver.FindElement(By.Name("company")).GetAttribute("value");
+            string title= driver.FindElement(By.Name("title")).GetAttribute("value");
+            string fax = driver.FindElement(By.Name("fax")).GetAttribute("value");
 
-         
 
-            return new ContactData(firstname,lastname, middlename, nickname,address,home,mobileNumber,email,email2,email3,homepage, birthday,birthmonth,birthyear, anniverday, annivermonth, anniveryear)
+
+            return new ContactData(firstname, lastname, middlename, nickname, address, home, mobileNumber, email, email2, email3, homepage, birthday, birthmonth, birthyear, anniverday, annivermonth, anniveryear)
             {
                 /*Address = address,
                 Home = home,
@@ -177,7 +180,10 @@ namespace WebAddressbookTests
                 WorkNumber = workNumber,
                 Email = email,
                 Email2 = email2*/
-
+                Company = company,
+                Title=title,
+                WorkNumber=workNumber,
+                Fax=fax,
             };
         }
 

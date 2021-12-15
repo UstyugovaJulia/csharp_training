@@ -39,7 +39,70 @@ namespace WebAddressbookTests
             //  Assert.AreEqual(fromTable, fromForm);
             //более верно
             //   Assert.AreEqual(fromForm, fromTable);
-            Assert.AreEqual(fromTable.Firstname, fromForm.AllContacts);
+            //old
+            //  Assert.AreEqual(fromTable.Firstname, fromForm.AllContacts);
+            string result="";
+            if (!string.IsNullOrEmpty(fromForm.Firstname)) {
+                result += fromForm.Firstname+" ";
+                    }
+            if (!string.IsNullOrEmpty(fromForm.Middlename))
+            {
+                result += fromForm.Middlename + " ";
+                
+            }
+            if (!string.IsNullOrEmpty(fromForm.Lastname))
+            {
+                result += fromForm.Lastname;
+            }
+            result = result.TrimEnd('\r',' ' , '\n')+ "\r\n";
+            if (!string.IsNullOrEmpty(fromForm.Nickname))
+            {
+                result += fromForm.Nickname + "\r\n";
+            }
+            if (!string.IsNullOrEmpty(fromForm.Title))
+            {
+                result += fromForm.Title + "\r\n";
+            }
+            if (!string.IsNullOrEmpty(fromForm.Company))
+            {
+                result += fromForm.Company + "\r\n";
+            }
+
+            if (!string.IsNullOrEmpty(fromForm.Address))
+            {
+                result += fromForm.Address + "\r\n";
+            }
+           result = result.TrimEnd('\r', ' ', '\n') + "\r\n\r\n";
+            if (!string.IsNullOrEmpty(fromForm.Home))
+            {
+                result += "H: " + fromForm.Home + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+
+            if (!string.IsNullOrEmpty(fromForm.MobileNumber))
+            {
+                result += "M: " + fromForm.MobileNumber + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+
+            if (!string.IsNullOrEmpty(fromForm.WorkNumber))
+            {
+                result += "W: " + fromForm.WorkNumber + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+
+            if (!string.IsNullOrEmpty(fromForm.Fax))
+            {
+                result += "F: " + fromForm.Fax + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+            Assert.AreEqual(fromTable.Firstname, result.TrimEnd('\r', ' ', '\n'));
+
+
+            /*   if (!string.IsNullOrEmpty(fromForm.Address))
+               {
+                   result += fromForm.Address + "\r\n";
+               }*/
             /*upd 11/12
             Assert.AreEqual(fromTable.Firstname, fromForm.Firstname + " " + fromForm.Middlename + " " + fromForm.Lastname + "\r\n" + fromForm.Nickname
                + "\r\nTitleTest\r\n" + fromForm.Address + "\r\n\r\nH: " + fromForm.Home + "\r\nM: " + fromForm.MobileNumber + "\r\n\r\n" +

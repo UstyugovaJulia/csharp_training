@@ -50,10 +50,33 @@ namespace WebAddressbookTests
             Anniverday = anniverday;
             Annivermonth = annivermonth;
             Anniveryear = anniveryear;
+           
 
         }
 
+        public ContactData(string firstname, string lastname, string middlename, string nickname, string address, string home, string mobileNumber,
+            string email, string email2, string email3, string homepage, string birthday, string birthmonth, string birthyear, string anniverday, string annivermonth, string anniveryear, string company)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            Middlename = middlename;
+            Nickname = nickname;
+            Address = address;
+            Home = home;
+            MobileNumber = mobileNumber;
+            Email = email;
+            Email2 = email2;
+            Email3 = email3;
+            Homepage = homepage;
+            Birthday = birthday;
+            Birthmonth = birthmonth;
+            Birthyear = birthyear;
+            Anniverday = anniverday;
+            Annivermonth = annivermonth;
+            Anniveryear = anniveryear;
+            Company = company;
 
+        }
         public ContactData(string firstname, string lastname)
         {
             Firstname = firstname;
@@ -175,7 +198,8 @@ namespace WebAddressbookTests
         [Column(Name = "mobile")]
         public string MobileNumber { get; set; }
 
-
+        [Column(Name = "fax")]
+        public string Fax { get; set; }
 
         [Column(Name = "work")]
         public string WorkNumber { get; set; }
