@@ -72,6 +72,8 @@
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="tests\AccountCreationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tests\Delete.cs" />
+    <Compile Include="tests\Create.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
