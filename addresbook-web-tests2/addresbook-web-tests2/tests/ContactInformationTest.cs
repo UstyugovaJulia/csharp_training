@@ -95,7 +95,85 @@ namespace WebAddressbookTests
             {
                 result += "F: " + fromForm.Fax + "\r\n";
             }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n\r\n";
+
+
+            if (!string.IsNullOrEmpty(fromForm.Email))
+            {
+                result += fromForm.Email + "\r\n";
+            }
             result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+            if (!string.IsNullOrEmpty(fromForm.Email2))
+            {
+                result += fromForm.Email2 + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+            if (!string.IsNullOrEmpty(fromForm.Email3))
+            {
+                result += fromForm.Email3 + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+
+            if (!string.IsNullOrEmpty(fromForm.Homepage))
+            {
+                result += "Homepage:"+ "\r\n"+fromForm.Homepage + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n\r\n";
+            if (!string.IsNullOrEmpty(fromForm.Birthday))
+            {
+                result += "Birthday "  + fromForm.Birthday + ".";
+            }
+
+            if (!string.IsNullOrEmpty(fromForm.Birthmonth))
+            {
+                result += " "+ fromForm.Birthmonth ;
+            }
+            
+            if (!string.IsNullOrEmpty(fromForm.Birthyear))
+            {
+                result += " " + fromForm.Birthyear+ " (36)";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+            if (!string.IsNullOrEmpty(fromForm.Anniverday))
+            {
+                result += "Anniversary " + fromForm.Anniverday + ".";
+            }
+            if (!string.IsNullOrEmpty(fromForm.Annivermonth))
+            {
+                result += " " + fromForm.Annivermonth;
+            }
+
+            if (!string.IsNullOrEmpty(fromForm.Anniveryear))
+            {
+                result += " " + fromForm.Anniveryear + " (34)";
+            }
+
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n\r\n";
+
+
+            if (!string.IsNullOrEmpty(fromForm.Address2))
+            {
+                result += fromForm.Address2 + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n\r\n";
+
+            if (!string.IsNullOrEmpty(fromForm.Phone2))
+            {
+                result += "P: "+fromForm.Phone2 + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n\r\n";
+
+            
+            if (!string.IsNullOrEmpty(fromForm.Notes))
+            {
+                result +=  fromForm.Notes + "\r\n";
+            }
+            result = result.TrimEnd('\r', ' ', '\n') + "\r\n";
+
+
+
+
+
             Assert.AreEqual(fromTable.Firstname, result.TrimEnd('\r', ' ', '\n'));
 
 

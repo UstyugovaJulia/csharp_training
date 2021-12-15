@@ -193,6 +193,10 @@ namespace WebAddressbookTests
         }
         [Column(Name = "address")]
         public string Address { get; set; }
+
+        [Column(Name = "address2")]
+        public string Address2 { get; set; }
+
         [Column(Name = "home")]
         public string Home { get; set; }
         [Column(Name = "mobile")]
@@ -204,6 +208,11 @@ namespace WebAddressbookTests
         [Column(Name = "work")]
         public string WorkNumber { get; set; }
 
+        [Column(Name = "notes")]
+        public string Notes { get; set; }
+
+        [Column(Name = "phone2")]
+        public string Phone2 { get; set; }
 
         [Column(Name = "email")]
         public string Email { get; set; }

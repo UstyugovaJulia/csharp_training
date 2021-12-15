@@ -169,6 +169,9 @@ namespace WebAddressbookTests
             string company=driver.FindElement(By.Name("company")).GetAttribute("value");
             string title= driver.FindElement(By.Name("title")).GetAttribute("value");
             string fax = driver.FindElement(By.Name("fax")).GetAttribute("value");
+            string address2 = driver.FindElement(By.Name("address2")).GetAttribute("value");
+            string phone2 = driver.FindElement(By.Name("phone2")).GetAttribute("value");
+            string notes = driver.FindElement(By.Name("notes")).GetAttribute("value");
 
 
 
@@ -184,6 +187,9 @@ namespace WebAddressbookTests
                 Title=title,
                 WorkNumber=workNumber,
                 Fax=fax,
+                Address2=address2,
+                Phone2=phone2,
+                Notes=notes,
             };
         }
 
