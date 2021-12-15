@@ -32,6 +32,8 @@ namespace mantis_tests
             Type(By.Name("username"), account.Name);
           //  Type(By.Name("pass"), account.Password);
             driver.FindElement(By.XPath("//input[@class='width-40 pull-right btn btn-success btn-inverse bigger-110']")).Click();
+              Type(By.Name("password"), account.Password);
+
         }
 
 
