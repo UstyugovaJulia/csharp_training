@@ -21,7 +21,7 @@ namespace mantis_tests
             this.baseURL = baseURL;
         }
 
-        public void GoToHomePage()
+    /*    public void GoToHomePage()
         {
             // if (driver.Url == baseURL + "/addressbook/")
             if (driver.Url == baseURL + "/account_page.php")
@@ -30,7 +30,7 @@ namespace mantis_tests
             }
             //  driver.Navigate().GoToUrl(baseURL + "/addressbook/");
             driver.Navigate().GoToUrl(baseURL + "/account_page.php");
-        }
+        }*/
 
      /*   public void GoToGroupsPage()
         {

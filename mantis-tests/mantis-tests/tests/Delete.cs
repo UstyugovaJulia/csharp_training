@@ -18,7 +18,7 @@ namespace mantis_tests
         public void DeleteTest()
         {
             OpenHomePage();
-            Login(new AccountData("administrator", "root"));
+            LoginIn(new AccountData("administrator", "root"));
            // AccountData account = new AccountData("administrator", "root");
            // app.Auth.Login(account);
             GoToProject1();

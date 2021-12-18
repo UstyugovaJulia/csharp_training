@@ -71,7 +71,7 @@ namespace mantis_tests
             driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
         }
 
-        protected void Login(AccountData account)
+        protected void LoginIn(AccountData account)
         {
             driver.FindElement(By.Id("username")).Click();
             driver.FindElement(By.Id("username")).Clear();
