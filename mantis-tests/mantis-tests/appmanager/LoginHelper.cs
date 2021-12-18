@@ -30,11 +30,13 @@ namespace mantis_tests
                 Logout();
             }
             Type(By.Name("username"), account.Name);
-          //  Type(By.Name("pass"), account.Password);
-            driver.FindElement(By.XPath("//input[@class='width-40 pull-right btn btn-success btn-inverse bigger-110']")).Click();
-              Type(By.Name("password"), account.Password);
+            //  Type(By.Name("pass"), account.Password);
+            //     driver.FindElement(By.XPath("//input[@class='width-40 pull-right btn btn-success btn-inverse bigger-110']")).Click();
+            driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
 
-        }
+            Type(By.Name("password"), account.Password);
+            driver.FindElement(By.XPath("//input[@value='Вход']")).Click(); 
+             }
 
 
         public void Logout()
@@ -64,8 +66,11 @@ namespace mantis_tests
              return text.Substring(1,text.Length-2);
           //            == System.String.Format("(${0})", account.Username);
          }
-
-      /*  protected void Login1(AccountData account)
+        //new
+        // loginHelper = new LoginHelper((ApplicationManager)driver);
+       // public IWebDriver driver;
+       // public LoginHelper(ApplicationManager driver) => this.driver = (IWebDriver)driver;
+      /*  public void LoginIn(AccountData account)
         {
             driver.FindElement(By.Id("username")).Click();
             driver.FindElement(By.Id("username")).Clear();
