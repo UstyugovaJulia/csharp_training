@@ -37,11 +37,12 @@ namespace mantis_tests
         }
 
 
-        public IWebDriver driver;
+        protected IWebDriver driver;
         private StringBuilder verificationErrors;
         private string baseURL;
-       // protected LoginHelper loginHelper;
-      
+        protected NewLoginHelper newLoginHelper;
+        protected NewNavigationHelper newNavigator;
+        protected ProjectHelper projectHelper;
 
         [SetUp]
         public void SetupTest()
@@ -50,7 +51,9 @@ namespace mantis_tests
             baseURL = "https://www.google.com/";
             verificationErrors = new StringBuilder();
 
-//            loginHelper = new LoginHelper((ApplicationManager)driver);
+            newLoginHelper = new NewLoginHelper(driver);
+            newNavigator = new NewNavigationHelper(driver);
+            projectHelper = new ProjectHelper(driver);
         }
 
         [TearDown]
@@ -62,72 +65,10 @@ namespace mantis_tests
             }
             catch (Exception)
             {
-                // Ignore errors if unable to close the browser
+             
             }
             Assert.AreEqual("", verificationErrors.ToString());
         }
-
-        protected void OpenHomePage()
-        {
-            driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
-        }
-
-        protected void LoginIn(AccountData account)
-        {
-            app.Driver.FindElement(By.Id("username")).Click();
-            app.Driver.FindElement(By.Id("username")).Clear();
-            app.Driver.FindElement(By.Id("username")).SendKeys(account.Name);
-            app.Driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
-            app.Driver.FindElement(By.Id("password")).Clear();
-            app.Driver.FindElement(By.Id("password")).SendKeys(account.Password);
-            app.Driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
-        }
-
-
-        public void Exit()
-        {
-            app.Driver.FindElement(By.XPath("//div[@id='navbar-container']/div[2]/ul/li[3]/a/span")).Click();
-            app.Driver.FindElement(By.LinkText("Выход")).Click();
-        }
-
-        public void SubmitProjectCreation()
-        {
-            app.Driver.FindElement(By.XPath("//input[@value='Добавить проект']")).Click();
-        }
-
-        public void FillProjectForm(ProjectData project)
-        {
-            // Type(By.Name("project-name"), project.ProjectName);
-            app.Driver.FindElement(By.Id("project-name")).Clear();
-            app.Driver.FindElement(By.Id("project-name")).SendKeys(project.ProjectName);
-            app.Driver.FindElement(By.Id("project-description")).Click();
-            app.Driver.FindElement(By.Id("project-description")).Clear();
-            app.Driver.FindElement(By.Id("project-description")).SendKeys(project.ProjectDescription);
-        }
-
-        public void InitNewProjectCreation()
-        {
-            app.Driver.FindElement(By.XPath("//button[@type='submit']")).Click();
-            app.Driver.FindElement(By.Id("project-name")).Click();
-        }
-
-        public void GoToProject()
-        {
-          app.Driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[6]/a/i")).Click();
-            app.Driver.FindElement(By.LinkText("Управление проектами")).Click();
-        }
-
-        public void SubmitProjectDelete()
-        {
-            app.Driver.FindElement(By.XPath("//div[@id='main-container']/div[2]/div[2]/div/div/div[2]/div[2]/div/div[2]/table/tbody/tr/td/a")).Click();
-            app.Driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
-            app.Driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
-        }
-
-        public void GoToProject1()
-        {
-            app.Driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
-            app.Driver.FindElement(By.LinkText("Управление проектами")).Click();
-        }
+       
     }
 }

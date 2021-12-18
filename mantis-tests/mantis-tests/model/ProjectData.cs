@@ -9,7 +9,7 @@ namespace mantis_tests
 {
     
     public class ProjectData 
-        //: IEquatable<ContactData>, IComparable<ContactData>
+       
     {
       
 

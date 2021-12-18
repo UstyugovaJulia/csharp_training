@@ -16,25 +16,16 @@ namespace mantis_tests
         [Test]
         public void CreateTest()
         {
-            /*OpenHomePage();
-            // loginHelper.Login(new AccountData("administrator", "root"));
-            LoginIn(new AccountData("administrator", "root"));
-            // AccountData account = new AccountData("administrator", "root");
-            //   app.Auth.Login(account);
-            */
-
-            OpenHomePage();
-            AccountData account = new AccountData("administrator", "root");
-               app.Auth.Login(account);
-          //  OpenHomePage();
-
-            GoToProject();
-            InitNewProjectCreation();
-            ProjectData project = new ProjectData("test4");
-            project.ProjectDescription = "test5";
-            FillProjectForm(project);
-            SubmitProjectCreation();
-            Exit();
+            newNavigator.OpenHomePage();
+            newLoginHelper.LoginIn(new AccountData("administrator", "root"));
+            newNavigator.OpenHomePage();
+            newNavigator.GoToProject();
+            projectHelper.InitNewProjectCreation();
+            ProjectData project = new ProjectData("test");
+            project.ProjectDescription = "test2";
+            projectHelper.FillProjectForm(project);
+            projectHelper.SubmitProjectCreation();
+            projectHelper.Exit();
         }
  
     }

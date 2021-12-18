@@ -17,17 +17,11 @@ namespace mantis_tests
         [Test]
         public void DeleteTest()
         {
-            OpenHomePage();
-            // loginHelper.Login(new AccountData("administrator", "root"));
-            // AccountData account = new AccountData("administrator", "root");
-            // app.Auth.Login(account);
-            /* LoginIn(new AccountData("administrator", "root"));*/
-            AccountData account = new AccountData("administrator", "root");
-            app.Auth.Login(account);
-          //  OpenHomePage();
-
-            GoToProject1();
-            SubmitProjectDelete();
+           newNavigator.OpenHomePage();
+           newLoginHelper.LoginIn(new AccountData("administrator", "root"));
+           
+           newNavigator.GoToProject1();
+           projectHelper.SubmitProjectDelete();
         }
 
       

@@ -15,8 +15,7 @@ namespace mantis_tests
     {
         protected IWebDriver driver;
         protected string baseURL;
-        protected LoginHelper loginHelper;
-        protected NavigationHelper navigator;
+      
 
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get;  set; }
@@ -27,7 +26,6 @@ namespace mantis_tests
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost";
-            loginHelper = new LoginHelper(this);
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
         }
@@ -63,20 +61,6 @@ namespace mantis_tests
             }
         }
 
-        public LoginHelper Auth
-        {
-            get
-            {
-                return loginHelper;
-            }
-        }
-
-        public NavigationHelper Navigator
-        {
-            get
-            {
-                return navigator;
-            }
-        }
+    
     }
 }
