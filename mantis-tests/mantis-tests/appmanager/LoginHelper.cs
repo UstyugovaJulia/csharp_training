@@ -65,6 +65,15 @@ namespace mantis_tests
           //            == System.String.Format("(${0})", account.Username);
          }
 
-
+      /*  protected void Login1(AccountData account)
+        {
+            driver.FindElement(By.Id("username")).Click();
+            driver.FindElement(By.Id("username")).Clear();
+            driver.FindElement(By.Id("username")).SendKeys(account.Name);
+            driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
+            driver.FindElement(By.Id("password")).Clear();
+            driver.FindElement(By.Id("password")).SendKeys(account.Password);
+            driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
+        }*/
     }
 }

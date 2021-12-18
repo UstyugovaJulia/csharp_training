@@ -121,7 +121,7 @@ namespace mantis_tests
       }*/
 
 
-        public void Exit()
+      /*  public void Exit()
         {
             driver.FindElement(By.XPath("//div[@id='navbar-container']/div[2]/ul/li[3]/a/span")).Click();
             driver.FindElement(By.LinkText("Выход")).Click();
@@ -151,9 +151,9 @@ namespace mantis_tests
         {
             driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[6]/a/i")).Click();
             driver.FindElement(By.LinkText("Управление проектами")).Click();
-        }
+        }*/
 
-        public void Login()
+       /* public void Login()
         {
             driver.FindElement(By.Id("username")).Click();
             driver.FindElement(By.Id("username")).Clear();
@@ -162,12 +162,12 @@ namespace mantis_tests
             driver.FindElement(By.Id("password")).Clear();
             driver.FindElement(By.Id("password")).SendKeys("root");
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
-        }
+        }*/
 
-        public void OpenHomePage()
+      /*  public void OpenHomePage()
         {
             driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
-        }
+        }*/
 
 
     }

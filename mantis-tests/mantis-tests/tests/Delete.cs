@@ -19,6 +19,8 @@ namespace mantis_tests
         {
             OpenHomePage();
             Login(new AccountData("administrator", "root"));
+           // AccountData account = new AccountData("administrator", "root");
+           // app.Auth.Login(account);
             GoToProject1();
             SubmitProjectDelete();
         }

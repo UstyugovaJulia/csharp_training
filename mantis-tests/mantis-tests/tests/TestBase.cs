@@ -40,7 +40,7 @@ namespace mantis_tests
         protected IWebDriver driver;
         private StringBuilder verificationErrors;
         private string baseURL;
-        private bool acceptNextAlert = true;
+      
 
         [SetUp]
         public void SetupTest()
@@ -48,6 +48,8 @@ namespace mantis_tests
             driver = new FirefoxDriver();
             baseURL = "https://www.google.com/";
             verificationErrors = new StringBuilder();
+
+            //LoginHelper = new LoginHelper(driver);
         }
 
         [TearDown]
