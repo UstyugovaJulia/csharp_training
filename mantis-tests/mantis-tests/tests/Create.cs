@@ -43,10 +43,10 @@ namespace mantis_tests
         public void CreateTest()
         {
             OpenHomePage();
-            Login();
+            Login("administrator", "root");
             GoToProject();
             InitNewProjectCreation();
-            FillProjectForm();
+            FillProjectForm("test","test2");
             SubmitProjectCreation();
             Exit();
         }
@@ -62,13 +62,13 @@ namespace mantis_tests
             driver.FindElement(By.XPath("//input[@value='Добавить проект']")).Click();
         }
 
-        public void FillProjectForm()
+        public void FillProjectForm(string projectName, string projectDescription)
         {
             driver.FindElement(By.Id("project-name")).Clear();
-            driver.FindElement(By.Id("project-name")).SendKeys("test");
+            driver.FindElement(By.Id("project-name")).SendKeys(projectName);
             driver.FindElement(By.Id("project-description")).Click();
             driver.FindElement(By.Id("project-description")).Clear();
-            driver.FindElement(By.Id("project-description")).SendKeys("test2");
+            driver.FindElement(By.Id("project-description")).SendKeys(projectDescription);
         }
 
         public void InitNewProjectCreation()
@@ -83,14 +83,14 @@ namespace mantis_tests
             driver.FindElement(By.LinkText("Управление проектами")).Click();
         }
 
-        public void Login()
+        public void Login(string username, string password)
         {
             driver.FindElement(By.Id("username")).Click();
             driver.FindElement(By.Id("username")).Clear();
-            driver.FindElement(By.Id("username")).SendKeys("administrator");
+            driver.FindElement(By.Id("username")).SendKeys(username);
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
             driver.FindElement(By.Id("password")).Clear();
-            driver.FindElement(By.Id("password")).SendKeys("root");
+            driver.FindElement(By.Id("password")).SendKeys(password);
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
         }
 
