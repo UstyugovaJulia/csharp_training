@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace SeleniumTests
+namespace mantis_tests
 {
     [TestFixture]
     public class Delete
@@ -40,7 +40,7 @@ namespace SeleniumTests
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void DeleteTest()
         {
             OpenHomePage();
             Login();
@@ -48,20 +48,20 @@ namespace SeleniumTests
             SubmitProjectDelete();
         }
 
-        private void SubmitProjectDelete()
+        public void SubmitProjectDelete()
         {
             driver.FindElement(By.XPath("//div[@id='main-container']/div[2]/div[2]/div/div/div[2]/div[2]/div/div[2]/table/tbody/tr/td/a")).Click();
             driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
             driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
         }
 
-        private void GoToProject1()
+        public void GoToProject1()
         {
             driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
             driver.FindElement(By.LinkText("Управление проектами")).Click();
         }
 
-        private void Login()
+        public void Login()
         {
             driver.FindElement(By.XPath("//div[@id='main-container']/div/div")).Click();
             driver.FindElement(By.Id("username")).Click();
@@ -73,12 +73,12 @@ namespace SeleniumTests
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
         }
 
-        private void OpenHomePage()
+        public void OpenHomePage()
         {
             driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
         }
 
-        private bool IsElementPresent(By by)
+       /* public bool IsElementPresent(By by)
         {
             try
             {
@@ -124,6 +124,6 @@ namespace SeleniumTests
             {
                 acceptNextAlert = true;
             }
-        }
+        }*/
     }
 }
