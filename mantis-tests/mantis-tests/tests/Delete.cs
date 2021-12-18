@@ -42,7 +42,27 @@ namespace SeleniumTests
         [Test]
         public void TheUntitledTestCaseTest()
         {
-            driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
+            OpenHomePage();
+            Login();
+            GoToProject1();
+            SubmitProjectDelete();
+        }
+
+        private void SubmitProjectDelete()
+        {
+            driver.FindElement(By.XPath("//div[@id='main-container']/div[2]/div[2]/div/div/div[2]/div[2]/div/div[2]/table/tbody/tr/td/a")).Click();
+            driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
+            driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
+        }
+
+        private void GoToProject1()
+        {
+            driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
+            driver.FindElement(By.LinkText("Управление проектами")).Click();
+        }
+
+        private void Login()
+        {
             driver.FindElement(By.XPath("//div[@id='main-container']/div/div")).Click();
             driver.FindElement(By.Id("username")).Click();
             driver.FindElement(By.Id("username")).Clear();
@@ -51,12 +71,13 @@ namespace SeleniumTests
             driver.FindElement(By.Id("password")).Clear();
             driver.FindElement(By.Id("password")).SendKeys("root");
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
-            driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
-            driver.FindElement(By.LinkText("Управление проектами")).Click();
-            driver.FindElement(By.XPath("//div[@id='main-container']/div[2]/div[2]/div/div/div[2]/div[2]/div/div[2]/table/tbody/tr/td/a")).Click();
-            driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
-            driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
         }
+
+        private void OpenHomePage()
+        {
+            driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
+        }
+
         private bool IsElementPresent(By by)
         {
             try

@@ -16,6 +16,7 @@ namespace mantis_tests
         protected IWebDriver driver;
         protected string baseURL;
         protected LoginHelper loginHelper;
+        protected NavigationHelper navigator;
 
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get;  set; }
@@ -67,6 +68,14 @@ namespace mantis_tests
             get
             {
                 return loginHelper;
+            }
+        }
+
+        public NavigationHelper Navigator
+        {
+            get
+            {
+                return navigator;
             }
         }
     }

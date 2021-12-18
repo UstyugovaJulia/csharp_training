@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace SeleniumTests
+namespace mantis_tests
 {
     [TestFixture]
     public class Create
@@ -16,7 +16,7 @@ namespace SeleniumTests
         private StringBuilder verificationErrors;
         private string baseURL;
         private bool acceptNextAlert = true;
-
+        
         [SetUp]
         public void SetupTest()
         {
@@ -37,12 +37,54 @@ namespace SeleniumTests
                 // Ignore errors if unable to close the browser
             }
             Assert.AreEqual("", verificationErrors.ToString());
-        }
+        } 
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void CreateTest()
         {
-            driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
+            OpenHomePage();
+            Login();
+            GoToProject();
+            InitNewProjectCreation();
+            FillProjectForm();
+            SubmitProjectCreation();
+            Exit();
+        }
+
+        public void Exit()
+        {
+            driver.FindElement(By.XPath("//div[@id='navbar-container']/div[2]/ul/li[3]/a/span")).Click();
+            driver.FindElement(By.LinkText("Выход")).Click();
+        }
+
+        public void SubmitProjectCreation()
+        {
+            driver.FindElement(By.XPath("//input[@value='Добавить проект']")).Click();
+        }
+
+        public void FillProjectForm()
+        {
+            driver.FindElement(By.Id("project-name")).Clear();
+            driver.FindElement(By.Id("project-name")).SendKeys("test");
+            driver.FindElement(By.Id("project-description")).Click();
+            driver.FindElement(By.Id("project-description")).Clear();
+            driver.FindElement(By.Id("project-description")).SendKeys("test2");
+        }
+
+        public void InitNewProjectCreation()
+        {
+            driver.FindElement(By.XPath("//button[@type='submit']")).Click();
+            driver.FindElement(By.Id("project-name")).Click();
+        }
+
+        public void GoToProject()
+        {
+            driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[6]/a/i")).Click();
+            driver.FindElement(By.LinkText("Управление проектами")).Click();
+        }
+
+        public void Login()
+        {
             driver.FindElement(By.Id("username")).Click();
             driver.FindElement(By.Id("username")).Clear();
             driver.FindElement(By.Id("username")).SendKeys("administrator");
@@ -50,65 +92,58 @@ namespace SeleniumTests
             driver.FindElement(By.Id("password")).Clear();
             driver.FindElement(By.Id("password")).SendKeys("root");
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
-            driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[6]/a/i")).Click();
-            driver.FindElement(By.LinkText("Управление проектами")).Click();
-            driver.FindElement(By.XPath("//button[@type='submit']")).Click();
-            driver.FindElement(By.Id("project-name")).Click();
-            driver.FindElement(By.Id("project-name")).Clear();
-            driver.FindElement(By.Id("project-name")).SendKeys("test");
-            driver.FindElement(By.Id("project-description")).Click();
-            driver.FindElement(By.Id("project-description")).Clear();
-            driver.FindElement(By.Id("project-description")).SendKeys("test2");
-            driver.FindElement(By.XPath("//input[@value='Добавить проект']")).Click();
-            driver.FindElement(By.XPath("//div[@id='navbar-container']/div[2]/ul/li[3]/a/span")).Click();
-            driver.FindElement(By.LinkText("Выход")).Click();
-        }
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
         }
 
-        private bool IsAlertPresent()
+        private void OpenHomePage()
         {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
+            driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
         }
+        /*  private bool IsElementPresent(By by)
+ {
+     try
+     {
+         driver.FindElement(by);
+         return true;
+     }
+     catch (NoSuchElementException)
+     {
+         return false;
+     }
+ }
 
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
-        }
+ private bool IsAlertPresent()
+ {
+     try
+     {
+         driver.SwitchTo().Alert();
+         return true;
+     }
+     catch (NoAlertPresentException)
+     {
+         return false;
+     }
+ }
+
+ private string CloseAlertAndGetItsText()
+ {
+     try
+     {
+         IAlert alert = driver.SwitchTo().Alert();
+         string alertText = alert.Text;
+         if (acceptNextAlert)
+         {
+             alert.Accept();
+         }
+         else
+         {
+             alert.Dismiss();
+         }
+         return alertText;
+     }
+     finally
+     {
+         acceptNextAlert = true;
+     }
+ }*/
     }
 }
