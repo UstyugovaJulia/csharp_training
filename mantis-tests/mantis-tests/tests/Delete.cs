@@ -43,7 +43,7 @@ namespace mantis_tests
         public void DeleteTest()
         {
             OpenHomePage();
-            Login("administrator", "root");
+            Login(new AccountData("administrator", "root"));
             GoToProject1();
             SubmitProjectDelete();
         }
@@ -61,15 +61,15 @@ namespace mantis_tests
             driver.FindElement(By.LinkText("Управление проектами")).Click();
         }
 
-        public void Login(string username, string password)
+        public void Login(AccountData account)
         {
             driver.FindElement(By.XPath("//div[@id='main-container']/div/div")).Click();
             driver.FindElement(By.Id("username")).Click();
             driver.FindElement(By.Id("username")).Clear();
-            driver.FindElement(By.Id("username")).SendKeys(username);
+            driver.FindElement(By.Id("username")).SendKeys(account.Name);
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
             driver.FindElement(By.Id("password")).Clear();
-            driver.FindElement(By.Id("password")).SendKeys(password);
+            driver.FindElement(By.Id("password")).SendKeys(account.Password);
             driver.FindElement(By.XPath("//input[@value='Вход']")).Click();
         }
 
