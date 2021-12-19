@@ -34,5 +34,7 @@ namespace mantis_tests
 
         public string ProjectName { get; set;  }
         public string ProjectDescription { get; set; }
+
+        
     }
 }

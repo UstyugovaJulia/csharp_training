@@ -12,12 +12,21 @@ namespace mantis_tests
     public class NewLoginHelper
     {
         private  IWebDriver driver;
+        private ApplicationManager applicationManager;
 
-        public NewLoginHelper(IWebDriver driver) {
+        public NewLoginHelper(IWebDriver driver, ApplicationManager applicationManager) {
             this.driver = driver;
+            this.applicationManager = applicationManager;
         }
-       public  void LoginIn(AccountData account)
+
+       /* public NewLoginHelper(ApplicationManager applicationManager)
         {
+            this.applicationManager = applicationManager;
+        }*/
+
+        public  void LoginIn(AccountData account)
+        {
+            driver.Navigate().GoToUrl("http://localhost/mantisbt-2.25.2/login_page.php");
             driver.FindElement(By.Id("username")).Click();
             driver.FindElement(By.Id("username")).Clear();
             driver.FindElement(By.Id("username")).SendKeys(account.Name);

@@ -10,7 +10,7 @@ namespace mantis_tests
 {
   public  class APIHelper : HelperBase
     {
-        private string baseUrl;
+        public string baseUrl;
 
         public void CreateNewIssue(AccountData account, ProjectData project, IssueData issueData)
         {

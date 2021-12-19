@@ -16,7 +16,10 @@ namespace mantis_tests
         [Test]
         public void CreateTest()
         {
-            newNavigator.OpenHomePage();
+            
+            app.NewLogin.LoginIn(new AccountData("administrator", "root"));
+            app.Projects.Create();
+           /* newNavigator.OpenHomePage();
             newLoginHelper.LoginIn(new AccountData("administrator", "root"));
             newNavigator.OpenHomePage();
             newNavigator.GoToProject();
@@ -25,7 +28,7 @@ namespace mantis_tests
             project.ProjectDescription = "test2";
             projectHelper.FillProjectForm(project);
             projectHelper.SubmitProjectCreation();
-            projectHelper.Exit();
+            projectHelper.Exit();*/
         }
  
     }

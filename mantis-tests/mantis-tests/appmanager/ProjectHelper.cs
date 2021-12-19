@@ -22,11 +22,40 @@ namespace mantis_tests
 
            }*/
 
-        private IWebDriver driver;
+        public IWebDriver driver;
+        public ApplicationManager applicationManager;
 
-        public ProjectHelper(IWebDriver driver)
+        public ProjectHelper(IWebDriver driver, ApplicationManager applicationManager)
         {
             this.driver = driver;
+            this.applicationManager = applicationManager;
+        }
+
+        public void Remove()
+        {
+        // applicationManager.NewNavigation.OpenHomePage();
+        // applicationManager.NewLogin.LoginIn(new AccountData("administrator", "root"));
+
+            applicationManager.NewNavigation.GoToProject1();
+            SubmitProjectDelete();
+        }
+
+        public void Create()
+        {
+            applicationManager.NewNavigation.OpenHomePage();
+          //  applicationManager.NewLogin.LoginIn(new AccountData("administrator", "root"));
+           // applicationManager.NewNavigation.OpenHomePage();
+            applicationManager.NewNavigation.GoToProject();
+            InitNewProjectCreation();
+            ProjectData project = new ProjectData("test");
+            project.ProjectDescription = "test2";
+            FillProjectForm(project);
+            SubmitProjectCreation();
+          // Exit();
+        }
+        public ProjectHelper(ApplicationManager applicationManager)
+        {
+            this.applicationManager = applicationManager;
         }
 
         public void Exit()
@@ -62,7 +91,30 @@ namespace mantis_tests
             driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
         }
 
+        public  List<ProjectData> GetProjectAll()
+        {
+           
+          //  applicationManager.NewNavigation.OpenHomePage();
+           // applicationManager.NewLogin.LoginIn(new AccountData("administrator", "root"));
 
+            applicationManager.NewNavigation.GoToProject1();
+            var elements = driver.FindElements(By.XPath("//div[@id='main-container']/div[2]/div[2]/div/div/div[2]/div[2]/div/div[2]/table/tbody/tr/td/a"));
+            // var element = elements[i];
+            if (elements.Count ==0)
+            { return new List<ProjectData>(); }
+            var element = elements[0];
+            ProjectData project = new ProjectData();
+            project.ProjectName = element.FindElements(By.XPath("//tr/td"))[0].Text;
+            project.Id= element.FindElements(By.XPath("//tr/td"))[0].Text;
 
+            List<ProjectData> projects = new List<ProjectData> { project };
+
+           /* for (int i; i < elements.Count; i++)
+            { 
+            
+            }*/
+
+            return projects;
+        }
     }
 }

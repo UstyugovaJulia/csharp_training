@@ -51,9 +51,9 @@ namespace mantis_tests
             baseURL = "https://www.google.com/";
             verificationErrors = new StringBuilder();
 
-            newLoginHelper = new NewLoginHelper(driver);
+            newLoginHelper = new NewLoginHelper(driver,app);
             newNavigator = new NewNavigationHelper(driver);
-            projectHelper = new ProjectHelper(driver);
+            projectHelper = new ProjectHelper(driver,app);
         }
 
         [TearDown]
