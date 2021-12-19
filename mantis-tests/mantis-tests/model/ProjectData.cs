@@ -11,10 +11,11 @@ namespace mantis_tests
     public class ProjectData 
        
     {
-      
+      public string Id { get; set; }
 
         public ProjectData() 
         { 
+            
         }
 
         public ProjectData(string projectName, string projectDescription)
