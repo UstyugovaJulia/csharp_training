@@ -22,7 +22,7 @@ namespace mantis_tests
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get;  set; }
         public AdminHelper Admin { get; set; }
-        public APIHelper API { get; }
+        public APIHelper API { get; set; }
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 

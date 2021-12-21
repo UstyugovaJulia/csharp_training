@@ -18,10 +18,11 @@ namespace mantis_tests
         public void CreateTest()
         {
 
-            app.NewLogin.LoginIn(new AccountData("administrator", "root"));
-            List<ProjectData> oldProjects = projectHelper.GetProjectAll();
-
-            app.Projects.Create();
+            //app.NewLogin.LoginIn(new AccountData("administrator", "root"));
+            AccountData account=new AccountData ("administrator", "root");
+            List<ProjectData> oldProjects = app.API.GetProjectAll(account);
+            ProjectData projectData = new ProjectData("test3");
+            app.API.CreateNewProject(account,projectData);
           //  List<ProjectData> oldProjects = projectHelper.GetProjectAll();
 
             /* newNavigator.OpenHomePage();
@@ -34,7 +35,7 @@ namespace mantis_tests
              projectHelper.FillProjectForm(project);
              projectHelper.SubmitProjectCreation();
              projectHelper.Exit();*/
-            List<ProjectData> newProjects = projectHelper.GetProjectAll();
+            List<ProjectData> newProjects =  app.API.GetProjectAll(account);
             oldProjects.Sort();
             newProjects.Sort();
             Assert.AreEqual(oldProjects, newProjects);

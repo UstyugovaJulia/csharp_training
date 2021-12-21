@@ -25,23 +25,25 @@ namespace mantis_tests
 
              newNavigator.GoToProject1();
              projectHelper.SubmitProjectDelete();*/
-            app.NewLogin.LoginIn(new AccountData("administrator", "root"));
+            // app.NewLogin.LoginIn(new AccountData("administrator", "root"));
+            AccountData account = new AccountData("administrator", "root");
             ProjectData projectData = new ProjectData();
-            List<ProjectData> projects = app.Projects.GetProjectAll();
+            List<ProjectData> projects = app.API.GetProjectAll(account);
             
             
 
 
             if ( projects.Count==0)
                     {
-                app.Projects.Create();
+                app.API.CreateNewProject(account,new ProjectData("test4"));
             }
+          //  app.
            app.Projects.Remove();
 
 
             Assert.AreEqual(projects.Count, app.Projects.GetProjectCount());
 
-              List<ProjectData> newProjects = app.Projects.GetProjectAll();
+              List<ProjectData> newProjects = app.API.GetProjectAll(account);
           projects.RemoveAt(0);
               projects.Sort();
               newProjects.Sort();
