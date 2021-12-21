@@ -26,7 +26,6 @@ namespace mantis_tests
             client.mc_issue_add(account.Name, account.Password, issue);
         }
 
-
         public void CreateNewProject(AccountData account, ProjectData projectData)
         {
             Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
@@ -34,9 +33,10 @@ namespace mantis_tests
 
             project.name = projectData.ProjectName;
             project.description = projectData.ProjectDescription;
-       
+
             client.mc_project_add(account.Name, account.Password, project);
         }
+
         public APIHelper(ApplicationManager manager) : base(manager) 
         {
            

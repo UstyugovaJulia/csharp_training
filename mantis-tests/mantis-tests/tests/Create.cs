@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -16,20 +17,30 @@ namespace mantis_tests
         [Test]
         public void CreateTest()
         {
-            
+
             app.NewLogin.LoginIn(new AccountData("administrator", "root"));
+            List<ProjectData> oldProjects = projectHelper.GetProjectAll();
+
             app.Projects.Create();
-           /* newNavigator.OpenHomePage();
-            newLoginHelper.LoginIn(new AccountData("administrator", "root"));
-            newNavigator.OpenHomePage();
-            newNavigator.GoToProject();
-            projectHelper.InitNewProjectCreation();
-            ProjectData project = new ProjectData("test");
-            project.ProjectDescription = "test2";
-            projectHelper.FillProjectForm(project);
-            projectHelper.SubmitProjectCreation();
-            projectHelper.Exit();*/
+          //  List<ProjectData> oldProjects = projectHelper.GetProjectAll();
+
+            /* newNavigator.OpenHomePage();
+             newLoginHelper.LoginIn(new AccountData("administrator", "root"));
+             newNavigator.OpenHomePage();
+             newNavigator.GoToProject();
+             projectHelper.InitNewProjectCreation();
+             ProjectData project = new ProjectData("test");
+             project.ProjectDescription = "test2";
+             projectHelper.FillProjectForm(project);
+             projectHelper.SubmitProjectCreation();
+             projectHelper.Exit();*/
+            List<ProjectData> newProjects = projectHelper.GetProjectAll();
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
+
+
         }
- 
+
     }
 }

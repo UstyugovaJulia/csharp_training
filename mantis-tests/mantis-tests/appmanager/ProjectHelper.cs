@@ -53,6 +53,14 @@ namespace mantis_tests
             SubmitProjectCreation();
           // Exit();
         }
+
+        public int GetProjectCount()
+        {
+            return driver.FindElements(By.XPath("//div[@id='main-container']/div[2]/div[2]/div/div/div[2]/div[2]/div/div[2]/table/tbody/tr")).Count;
+
+
+        }
+
         public ProjectHelper(ApplicationManager applicationManager)
         {
             this.applicationManager = applicationManager;

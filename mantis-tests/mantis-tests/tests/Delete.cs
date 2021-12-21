@@ -7,6 +7,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
+
 
 namespace mantis_tests
 {
@@ -26,20 +28,36 @@ namespace mantis_tests
             app.NewLogin.LoginIn(new AccountData("administrator", "root"));
             ProjectData projectData = new ProjectData();
             List<ProjectData> projects = app.Projects.GetProjectAll();
+            
+            
+
 
             if ( projects.Count==0)
                     {
                 app.Projects.Create();
             }
            app.Projects.Remove();
+
+
+            Assert.AreEqual(projects.Count, app.Projects.GetProjectCount());
+
+              List<ProjectData> newProjects = app.Projects.GetProjectAll();
+          projects.RemoveAt(0);
+              projects.Sort();
+              newProjects.Sort();
+
+
+               foreach (ProjectData project in newProjects)
+              {
+
+                  Assert.AreNotEqual(project.ProjectName, projectData.ProjectName);
+              }
+
         }
 
-      
 
-     
 
-        
 
-      
+
     }
 }
