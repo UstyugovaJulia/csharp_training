@@ -36,6 +36,7 @@ namespace mantis_tests
              projectHelper.SubmitProjectCreation();
              projectHelper.Exit();*/
             List<ProjectData> newProjects =  app.API.GetProjectAll(account);
+           oldProjects.Add(projectData);
             oldProjects.Sort();
             newProjects.Sort();
             Assert.AreEqual(oldProjects, newProjects);

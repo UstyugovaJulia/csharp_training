@@ -41,7 +41,7 @@ namespace mantis_tests
            app.Projects.Remove();
 
 
-            Assert.AreEqual(projects.Count, app.Projects.GetProjectCount());
+            Assert.AreEqual(projects.Count-1, app.Projects.GetProjectCount());
 
               List<ProjectData> newProjects = app.API.GetProjectAll(account);
           projects.RemoveAt(0);
